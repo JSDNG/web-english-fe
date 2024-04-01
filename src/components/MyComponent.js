@@ -1,31 +1,22 @@
 // class component
 // function component
 import React from "react";
+import UserInfo from "./UserInfo";
+import DisplayInfo from "./DisplayInfo"
 
 class MyComponent extends React.Component{
-    state={name: 'quynh', address: 'hcm'};
-
-    handleOnChangeInput = (event) =>{
-        this.setState({
-            name: event.target.value
-        });
-    }
-    handleOnSubmit = (event) =>{
-        event.preventDefault();
-        console.log(this.state);
-        
+    state = {
+        listUsers: [{id: 1, name: "a", age: "10"},
+            {id: 2, name: "b", age: "20"},
+            {id: 3, name: "c", age: "30"},
+        ]
     }
     //jsx
     render(){
         return(
-            <div>
-                {this.state.name}
-                <form onSubmit={(event) => this.handleOnSubmit(event)}>
-                    <input type="text" 
-                    onChange={(event)=> this.handleOnChangeInput(event)}/>
-
-                    <button>Submit</button>
-                </form>
+            <div>               
+                <UserInfo />
+                <DisplayInfo listUsers = {this.state.listUsers}/>
             </div>
         )
     }
