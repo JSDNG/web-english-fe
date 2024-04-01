@@ -5,20 +5,27 @@ import React from "react";
 class MyComponent extends React.Component{
     state={name: 'quynh', address: 'hcm'};
 
-    handleClick(event){
-        //console.log(event.target);
-        console.log("name", this.state.name);
-        //merge State => react class
+    handleOnChangeInput = (event) =>{
         this.setState({
-            name: 'dev'
+            name: event.target.value
         });
+    }
+    handleOnSubmit = (event) =>{
+        event.preventDefault();
+        console.log(this.state);
+        
     }
     //jsx
     render(){
         return(
             <div>
                 {this.state.name}
-                <button onClick={(event)=>{this.handleClick(event)}}>Click me</button>
+                <form onSubmit={(event) => this.handleOnSubmit(event)}>
+                    <input type="text" 
+                    onChange={(event)=> this.handleOnChangeInput(event)}/>
+
+                    <button>Submit</button>
+                </form>
             </div>
         )
     }
