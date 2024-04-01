@@ -13,7 +13,6 @@ class DisplayInfo extends React.Component {
     render() {
         //destructuring array/object
         const listUsers = this.props.listUsers;
-        console.log(listUsers);
         //props => properties
         return (
             <div>
