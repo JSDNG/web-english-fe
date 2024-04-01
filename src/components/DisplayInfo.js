@@ -1,5 +1,6 @@
 import React from "react";
 import "./DisplayInfo.scss";
+import logo from "../logo.svg";
 class DisplayInfo extends React.Component {
     state = {
         isShow: true,
@@ -16,6 +17,7 @@ class DisplayInfo extends React.Component {
         //props => properties
         return (
             <div className="Display-info-container">
+                <img src={logo} />
                 <div onClick={(event) => this.handleOnClick(event)}>
                     {this.state.isShow === true ? "hide list user" : "Show list user"}
                 </div>
