@@ -14,10 +14,12 @@ class DisplayInfo extends React.Component {
     render() {
         //destructuring array/object
         const listUsers = this.props.listUsers;
+
         //props => properties
+        //template + logic js
         return (
             <div className="Display-info-container">
-                <img src={logo} />
+                {/* <img src={logo} /> */}
                 <div onClick={(event) => this.handleOnClick(event)}>
                     {this.state.isShow === true ? "hide list user" : "Show list user"}
                 </div>
@@ -28,6 +30,11 @@ class DisplayInfo extends React.Component {
                                 <div key={user.id} className={user.age > 18 ? "green" : "red"}>
                                     <div>{user.name}</div>
                                     <div>{user.age}</div>
+                                    <div>
+                                        <button onClick={(event) => this.props.handleDeleteUser(user.id)}>
+                                            Delete
+                                        </button>
+                                    </div>
                                     <hr />
                                 </div>
                             );
