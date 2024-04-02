@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./DisplayInfo.scss";
 import logo from "../logo.svg";
 
@@ -11,6 +11,13 @@ const DisplayInfo = (props) => {
     const handleOnClickButton = (event) => {
         setShow(!isShow);
     };
+    console.log(">> check");
+    useEffect(() => {
+        if (listUsers.length === 0) {
+            alert("delete add");
+        }
+        console.log(">> useEffect");
+    }, [listUsers]);
     return (
         <div className="Display-info-container">
             <div onClick={(event) => handleOnClickButton(event)}>
