@@ -2,16 +2,36 @@ import React from "react";
 import "./DisplayInfo.scss";
 import logo from "../logo.svg";
 class DisplayInfo extends React.Component {
-    state = {
-        isShow: true,
-    };
+    constructor(props) {
+        console.log(">> call constructor: 1");
+        super(props);
+        this.state = {
+            isShow: true,
+        };
+    }
 
+    componentDidMount() {
+        console.log(">> call me component di mount");
+        setTimeout(() => {
+            document.title = "hoi dan id";
+        }, 3000);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(">> call me component di update");
+        if (this.props.listUsers !== prevProps.listUsers) {
+            if (this.props.listUsers.length == 5) {
+                alert("happy");
+            }
+        }
+    }
     handleOnClick = (event) => {
         this.setState({
             isShow: !this.state.isShow,
         });
     };
     render() {
+        console.log(">> call me render");
         //destructuring array/object
         const listUsers = this.props.listUsers;
 
