@@ -1,40 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
-class AddUserInfo extends React.Component {
-    state = { name: "", age: "" };
-
-    handleOnChangeName = (event) => {
-        this.setState({
-            name: event.target.value,
-        });
+const AddUserInfo = (props) => {
+    const [name, setName] = useState("");
+    const [age, setAge] = useState("");
+    const handleOnChangeName = (event) => {
+        setName(event.target.value);
     };
-    handleOnChangeAge = (event) => {
-        this.setState({
-            age: event.target.value,
-        });
+    const handleOnChangeAge = (event) => {
+        setAge(event.target.value);
     };
-    handleOnSubmit = (event) => {
+    const handleOnSubmit = (event) => {
         event.preventDefault();
-        this.props.handleAddNewUser({
+        props.handleAddNewUser({
             id: Math.floor(Math.random() * 100 + 1) + "-random",
-            name: this.state.name,
-            age: this.state.age,
+            name: name,
+            age: age,
         });
     };
 
-    render() {
-        return (
-            <div>
-                name : {this.state.name} age : {this.state.age}
-                <form onSubmit={(event) => this.handleOnSubmit(event)}>
-                    <input type="text" value={this.state.name} onChange={(event) => this.handleOnChangeName(event)} />
+    return (
+        <div>
+            name : {name} age : {age}
+            <form onSubmit={(event) => handleOnSubmit(event)}>
+                <input type="text" value={name} onChange={(event) => handleOnChangeName(event)} />
 
-                    <input type="text" value={this.state.age} onChange={(event) => this.handleOnChangeAge(event)} />
-                    <button>Submit</button>
-                </form>
-            </div>
-        );
-    }
-}
-
+                <input type="text" value={age} onChange={(event) => handleOnChangeAge(event)} />
+                <button>Submit</button>
+            </form>
+        </div>
+    );
+};
 export default AddUserInfo;
