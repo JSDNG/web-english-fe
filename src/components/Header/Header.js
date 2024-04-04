@@ -35,13 +35,15 @@ const Header = () => {
                         </NavLink>
                     </Nav>
                     <Nav>
-                        <NavDropdown title="Settings" id="basic-nav-dropdown">
-                            <NavDropdown.Item>Log in</NavDropdown.Item>
-                            <NavDropdown.Item>Log out</NavDropdown.Item>
+                        {/* <NavDropdown title="Settings" id="basic-nav-dropdown">
+                            <NavDropdown.Item>test 1</NavDropdown.Item>
+                            <NavDropdown.Item>test 2</NavDropdown.Item>
                             <NavDropdown.Item>Something</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item>Separated link</NavDropdown.Item>
-                        </NavDropdown>
+                        </NavDropdown> */}
+                        <button className="btn-login">Đăng nhập</button>
+                        <button className="btn-signup">Đăng ký</button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -6,10 +6,44 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+@media (min-width: 1400px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 1500px !important;
+    }
+}
 .app-container {
     .header-container {
-        .navbar-nav {
+        .btn-login {
+            border-radius: 8px;
+            padding: 0 10px;
+            margin-right: 10px;
+            border: 1px solid #0000;
+            background-color: white;
+            height: 40px;
+            &:hover {
+                background: #f2f2f2;
+            }
+        }
+        .btn-signup {
+            border-radius: 8px;
+            padding: 0 10px;
+            border: 1px solid #0000;
+            background-color: #fcb155;
+            height: 40px;
+            &:hover {
+                background-color: #f9bc71;
+            }
+        }
+        .navbar {
+            padding-top: 14px;
+
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0) !important;
             .nav-link {
                 &.active {
                     color: aquamarine;
@@ -17,4 +51,39 @@ body {
             }
         }
     }
+    .homepage-container {
+        .homepage-content {
+            padding: 200px;
+            width: 65%;
+            color: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .titlea {
+                font-weight: 700px;
+                font-size: 45px;
+            }
+            .titleb {
+                font-weight: 400px;
+                font-size: 20px;
+            }
+            .titlec {
+                .btn-signup {
+                    border-radius: 8px;
+                    border: 1px solid #0000;
+                    background-color: #494ee0;
+                    height: 40px;
+                    &:hover {
+                        background-color: #7f8bfa;
+                    }
+                }
+            }
+        }
+    }
+}
+
+img {
+    position: fixed;
+    width: 100vw;
 }
