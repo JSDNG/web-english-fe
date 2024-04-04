@@ -5,7 +5,7 @@ const HomePage = () => {
         <div className="homepage-container">
             <>
                 <div>
-                    <img src={imageHomePage} />
+                    <img src={imageHomePage} alt="prop" />
                 </div>
                 <div className="homepage-content">
                     <div className="titlea">Thẻ ghi nhớ kỹ thuật số và các công cụ học tốt nhất</div>

@@ -40,7 +40,7 @@ body {
             }
         }
         .navbar {
-            padding-top: 14px;
+            padding: 10px 10px;
 
             z-index: 10;
             background-color: rgba(0, 0, 0, 0) !important;
@@ -53,19 +53,21 @@ body {
     }
     .homepage-container {
         .homepage-content {
-            padding: 200px;
-            width: 65%;
+            padding: 160px;
+            padding-left: 200px;
+            width: 60%;
+            height: 320px;
             color: white;
             position: relative;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
             .titlea {
-                font-weight: 700px;
+                font-weight: 70px;
                 font-size: 45px;
             }
             .titleb {
-                font-weight: 400px;
+                font-weight: 40px;
                 font-size: 20px;
             }
             .titlec {
@@ -73,7 +75,8 @@ body {
                     border-radius: 8px;
                     border: 1px solid #0000;
                     background-color: #494ee0;
-                    height: 40px;
+                    width: 170px;
+                    height: 50px;
                     &:hover {
                         background-color: #7f8bfa;
                     }
