@@ -14,7 +14,9 @@ const HomePage = () => {
                         bài kiểm tra thử và lời giải chuyên gia của Quizlet để cải thiện điểm số và đạt được mục tiêu.
                     </div>
                     <div className="titlec">
-                        <button className="btn-signup">Đăng ký miễn phí</button>
+                        <button type="button" className="btn btn-primary">
+                            Đăng ký miễn phí
+                        </button>
                     </div>
                 </div>
             </>

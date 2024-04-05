@@ -13,31 +13,16 @@ body {
     .container-sm,
     .container-xl,
     .container-xxl {
-        max-width: 1500px !important;
+        max-width: 1550px !important;
     }
 }
 .app-container {
     .header-container {
-        .btn-login {
-            border-radius: 8px;
-            padding: 0 10px;
-            margin-right: 10px;
-            border: 1px solid #0000;
-            background-color: white;
-            height: 40px;
-            &:hover {
-                background: #f2f2f2;
-            }
+        .lbl-add {
+            cursor: pointer;
         }
-        .btn-signup {
-            border-radius: 8px;
-            padding: 0 10px;
-            border: 1px solid #0000;
-            background-color: #fcb155;
-            height: 40px;
-            &:hover {
-                background-color: #f9bc71;
-            }
+        .btn {
+            margin-right: 10px;
         }
         .navbar {
             padding: 10px 10px;
@@ -71,16 +56,6 @@ body {
                 font-size: 20px;
             }
             .titlec {
-                .btn-signup {
-                    border-radius: 8px;
-                    border: 1px solid #0000;
-                    background-color: #494ee0;
-                    width: 170px;
-                    height: 50px;
-                    &:hover {
-                        background-color: #7f8bfa;
-                    }
-                }
             }
         }
     }
