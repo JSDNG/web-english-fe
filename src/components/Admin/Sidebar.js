@@ -2,6 +2,9 @@ import "react-pro-sidebar/dist/css/styles.css";
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from "react-icons/fa";
 import sidebarBg from "../../assets/image/bg2.jpg";
+import { DiReact } from "react-icons/di";
+import { MdDashboard } from "react-icons/md";
+import { Link } from "react-router-dom";
 const Sidebar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
     return (
@@ -26,50 +29,30 @@ const Sidebar = (props) => {
                             whiteSpace: "nowrap",
                         }}
                     >
-                        Hoi Dan IT
+                        <DiReact size={"3em"} color={"00bfff"} />
+                        <span>Admin</span>
                     </div>
                 </SidebarHeader>
 
                 <SidebarContent>
                     <Menu iconShape="circle">
-                        <MenuItem icon={<FaTachometerAlt />} suffix={<span className="badge red">New</span>}>
+                        <MenuItem icon={<MdDashboard />}>
                             dashboard
+                            <Link to="/admin" />
                         </MenuItem>
                         <MenuItem icon={<FaGem />}> components</MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
-                        <SubMenu
-                            suffix={<span className="badge yellow">3</span>}
-                            title="withSuffix"
-                            icon={<FaRegLaughWink />}
-                        >
-                            <MenuItem>submenu 1</MenuItem>
+                        <SubMenu title="Manage" icon={<FaRegLaughWink />}>
+                            <MenuItem>
+                                ManageUser
+                                <Link to="/admin/manage-user" />
+                            </MenuItem>
                             <MenuItem>submenu 2</MenuItem>
                             <MenuItem>submenu 3</MenuItem>
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
-
-                <SidebarFooter style={{ textAlign: "center" }}>
-                    <div
-                        className="sidebar-btn-wrapper"
-                        style={{
-                            padding: "20px 24px",
-                        }}
-                    >
-                        <a
-                            href="https://github.com/azouaoui-med/react-pro-sidebar"
-                            target="_blank"
-                            className="sidebar-btn"
-                            rel="noopener noreferrer"
-                        >
-                            <FaGithub />
-                            <span style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
-                                viewSource
-                            </span>
-                        </a>
-                    </div>
-                </SidebarFooter>
             </ProSidebar>
         </>
     );
