@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
+import { postCreacteNewUser } from "../../../services/apiService";
 const ModalCreactUser = (props) => {
     const { show, setShow } = props;
 
@@ -39,34 +39,31 @@ const ModalCreactUser = (props) => {
         //validate
         const inValidEmail = validateEmail(email);
 
-        if (!inValidEmail) {
-            toast.error("invalid email");
-            return;
-        }
+        // if (!inValidEmail) {
+        //     toast.error("invalid email");
+        //     return;
+        // }
 
         if (!password) {
             toast.error("invalid password");
             return;
         }
 
-        //call API
-        const data = new FormData();
-        data.append("email", email);
-        data.append("password", password);
-        data.append("username", username);
-        data.append("role", role);
-        data.append("userImage", image);
+        if (!username) {
+            toast.error("invalid username");
+            return;
+        }
 
-        let res = await axios.post("http://localhost:8081/api/v1/participant", data);
-        console.log(">>>>", res.data);
+        let data = await postCreacteNewUser(email, password, username, role, image);
 
-        if (res.data && res.data.EC === 0) {
-            toast.success("Thêm thành công");
+        console.log(">>>>", data);
+
+        if (data && data.EC === 0) {
+            toast.success(data.EM);
             handleClose();
         }
-        if (res.data && res.data.EC !== 0) {
-            toast.error("Thêm thất bại");
-            handleClose();
+        if (data && data.EC !== 0) {
+            toast.error(data.EM);
         }
     };
     return (
