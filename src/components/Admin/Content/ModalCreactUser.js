@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -5,19 +6,40 @@ import Modal from "react-bootstrap/Modal";
 const ModalCreactUser = (props) => {
     const { show, setShow } = props;
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        setEmail("");
+        setPassword("");
+        setUsername("");
+        setRole("USER");
+    };
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [role, setRole] = useState("USER");
     const [image, setImage] = useState("");
-    const [previewImage, setPreviewImage] = useState("");
-    const handlUploadImage = (event) => {
-        setPreviewImage("");
-        setImage("");
-        // setPreviewImage(URL.createObjectURL(event.target.files[0]));
-        //console.log(">>>", event.target.files[0]);
+    // const [previewImage, setPreviewImage] = useState("");
+    // const handleUploadImage = (event) => {
+    //     setPreviewImage("");
+    //     setImage("");
+    //     setPreviewImage(URL.createObjectURL(event.target.files[0]));
+    //     console.log(">>>", event.target.files[0]);
+    // };
+
+    const handleSubmitCreactUser = async () => {
+        //validate
+
+        //call API
+        const data = new FormData();
+        data.append("email", email);
+        data.append("password", password);
+        data.append("username", username);
+        data.append("role", role);
+        data.append("userImage", image);
+
+        let res = await axios.post("http://localhost:8081/api/v1/participant", data);
+        console.log(">>>>", res);
     };
     return (
         <>
@@ -48,6 +70,8 @@ const ModalCreactUser = (props) => {
                             <input
                                 type="password"
                                 className="form-control"
+                                name="password"
+                                autoComplete="off"
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                             />
@@ -69,22 +93,22 @@ const ModalCreactUser = (props) => {
                                 onChange={(event) => setRole(event.target.value)}
                                 value={role}
                             >
-                                <option value="USER">User</option>
-                                <option value="ADMIN">Admin</option>
+                                <option value="USER">USER</option>
+                                <option value="ADMIN">ADMIN</option>
                             </select>
                         </div>
-                        <div className="col-md-12">
+                        {/* <div className="col-md-12">
                             <label className="form-label">Upload file image</label>
-                            <input type="file" onChange={(event) => handlUploadImage(event)} />
+                            <input type="file" onChange={(event) => handleUploadImage(event)} />
                         </div>
                         <div className="col-md-12 img-preview">
                             {previewImage ? <img src={previewImage} /> : <span>image</span>}
-                        </div>
+                        </div> */}
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
+                    <Button variant="primary" onClick={() => handleSubmitCreactUser()}>
+                        Save
                     </Button>
                 </Modal.Footer>
             </Modal>
