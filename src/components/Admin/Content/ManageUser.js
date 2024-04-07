@@ -2,18 +2,21 @@ import ModalCreactUser from "./ModalCreactUser";
 import "./ManageUser.scss";
 import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../../services/apiService";
+import { getAllUsers, getUserWithPage } from "../../../services/apiService";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalDeleteUser from "./ModalDeleteUser";
+import TableUserPaginate from "./TableUserPaginate";
 const ManageUser = (props) => {
+    const limitUsers = 3;
     const [showModalCreactUser, setShowModalCreactUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
     const [listUser, setListUser] = useState([]);
     const [data, setData] = useState({});
+    const [pageCount, setPageCount] = useState(0);
 
     useEffect(() => {
-        fetchListUsers();
+        fetchListUsersWithPage(1);
     }, []);
 
     const fetchListUsers = async () => {
@@ -22,6 +25,15 @@ const ManageUser = (props) => {
             setListUser(res.DT);
         }
     };
+
+    const fetchListUsersWithPage = async (page) => {
+        let res = await getUserWithPage(page, limitUsers);
+        if (res.EC === 0) {
+            setListUser(res.DT.users);
+            setPageCount(res.DT.totalPages);
+        }
+    };
+
     const handleClickBtnUpdate = (user) => {
         setShowModalUpdateUser(true);
         setData(user);
@@ -42,10 +54,12 @@ const ManageUser = (props) => {
                     </button>
                 </div>
                 <div className="table-user">
-                    <TableUser
+                    <TableUserPaginate
                         listUser={listUser}
                         handleClickBtnUpdate={handleClickBtnUpdate}
                         handleClickBtnDelete={handleClickBtnDelete}
+                        fetchListUsersWithPage={fetchListUsersWithPage}
+                        pageCount={pageCount}
                     />
                 </div>
                 <ModalCreactUser
