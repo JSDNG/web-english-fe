@@ -10,13 +10,14 @@ const ModalDeleteUser = (props) => {
     };
 
     const handleConfirmDelete = async () => {
-        console.log(">> id", dataDelete.id);
         let data = await deleteUser(dataDelete.id);
 
         if (data.EC === 0) {
             toast.success(data.EM);
             handleClose();
-            await props.fetchListUsers();
+            //await props.fetchListUsers();
+            props.setCurrentPage(1);
+            await props.fetchListUsersWithPage(1);
         }
         if (data.EC !== 0) {
             toast.error(data.EM);
