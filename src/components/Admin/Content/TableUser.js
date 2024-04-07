@@ -10,7 +10,7 @@ const TableUser = (props) => {
                         <th scope="col">UserName</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
-                        <th>Action</th>
+                        <th width="257px">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,12 @@ const TableUser = (props) => {
                                         >
                                             Update
                                         </button>
-                                        <button className="btn btn-danger">Delete</button>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => props.handleClickBtnDelete(item)}
+                                        >
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             );
