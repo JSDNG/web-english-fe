@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
 import { postCreacteNewUser } from "../../../services/apiService";
-const ModalCreactUser = (props) => {
-    const { show, setShow } = props;
+import _ from "lodash";
+const ModalUpdateUser = (props) => {
+    const { show, setShow, dataUpdate } = props;
 
     const handleClose = () => {
         setShow(false);
@@ -28,6 +29,14 @@ const ModalCreactUser = (props) => {
     //     console.log(">>>", event.target.files[0]);
     // };
 
+    useEffect(() => {
+        if (!_.isEmpty(dataUpdate)) {
+            setEmail(dataUpdate.email);
+            setUsername(dataUpdate.username);
+            setRole(dataUpdate.role);
+            setImage("");
+        }
+    }, [dataUpdate]);
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -36,7 +45,7 @@ const ModalCreactUser = (props) => {
             );
     };
 
-    const handleSubmitCreactUser = async () => {
+    const handleSubmitUpdateUser = async () => {
         //validate
         const inValidEmail = validateEmail(email);
 
@@ -55,18 +64,18 @@ const ModalCreactUser = (props) => {
             return;
         }
 
-        let data = await postCreacteNewUser(email, password, username, role, image);
+        //let data = await postCreacteNewUser(email, password, username, role, image);
 
-        console.log(">>>> data", data);
+        //console.log(">>>> data", data);
 
-        if (data && data.EC === 0) {
-            toast.success(data.EM);
-            handleClose();
-            await props.fetchListUsers();
-        }
-        if (data && data.EC !== 0) {
-            toast.error(data.EM);
-        }
+        // if (data && data.EC === 0) {
+        //     toast.success(data.EM);
+        //     handleClose();
+        //     await props.fetchListUsers();
+        // }
+        // if (data && data.EC !== 0) {
+        //     toast.error(data.EM);
+        // }
     };
     return (
         <>
@@ -79,7 +88,7 @@ const ModalCreactUser = (props) => {
                 className="modal-add-user"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add new user</Modal.Title>
+                    <Modal.Title>Update user</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="row g-3">
@@ -89,6 +98,7 @@ const ModalCreactUser = (props) => {
                                 type="email"
                                 className="form-control"
                                 value={email}
+                                disabled
                                 onChange={(event) => setEmail(event.target.value)}
                             />
                         </div>
@@ -100,6 +110,7 @@ const ModalCreactUser = (props) => {
                                 name="password"
                                 autoComplete="off"
                                 value={password}
+                                disabled
                                 onChange={(event) => setPassword(event.target.value)}
                             />
                         </div>
@@ -134,7 +145,7 @@ const ModalCreactUser = (props) => {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => handleSubmitCreactUser()}>
+                    <Button variant="primary" onClick={() => handleSubmitUpdateUser()}>
                         Save
                     </Button>
                 </Modal.Footer>
@@ -143,4 +154,4 @@ const ModalCreactUser = (props) => {
     );
 };
 
-export default ModalCreactUser;
+export default ModalUpdateUser;
