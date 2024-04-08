@@ -7,7 +7,7 @@ import ModalUpdateUser from "./ModalUpdateUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 import TableUserPaginate from "./TableUserPaginate";
 const ManageUser = (props) => {
-    const limitUsers = 1;
+    const limitUsers = 4;
     const [showModalCreactUser, setShowModalCreactUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
