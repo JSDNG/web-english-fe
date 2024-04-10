@@ -121,7 +121,7 @@ const Login = () => {
                             handleLogin();
                         }}
                     >
-                        Log in
+                        <span>Log in</span>
                     </button>
                 </div>
 

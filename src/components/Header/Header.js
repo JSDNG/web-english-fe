@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const Header = () => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
     const account = useSelector((state) => state.user.account);
-
+    console.log(account);
     const navigate = useNavigate();
 
     return (
@@ -33,12 +33,15 @@ const Header = () => {
                         {/* <NavLink to="#" className="nav-link">
                             Lời giải chuyên gia
                         </NavLink> */}
-                        <NavLink to="/admin" className="nav-link">
-                            Admin
-                        </NavLink>
-                        <NavLink to="/user" className="nav-link">
-                            User
-                        </NavLink>
+                        {account.role === "ADMIN" ? (
+                            <NavLink to="/admin" className="nav-link">
+                                Admin
+                            </NavLink>
+                        ) : (
+                            <NavLink to="/user" className="nav-link">
+                                User
+                            </NavLink>
+                        )}
                     </Nav>
                     <Nav>
                         <NavDropdown title="Thêm" id="basic-nav-dropdown">
@@ -68,7 +71,7 @@ const Header = () => {
                             </>
                         ) : (
                             <NavDropdown title="Cài đặt chung" id="basic-nav-dropdown">
-                                <NavDropdown.Item>Tên user</NavDropdown.Item>
+                                <NavDropdown.Item>{account.username}</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item>Hồ sơ</NavDropdown.Item>
                                 <NavDropdown.Item>Ngôn ngữ</NavDropdown.Item>
