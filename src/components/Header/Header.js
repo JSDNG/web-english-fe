@@ -3,8 +3,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const Header = () => {
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+    const account = useSelector((state) => state.user.account);
+
     const navigate = useNavigate();
 
     return (
@@ -43,32 +46,37 @@ const Header = () => {
                             <NavDropdown.Item>Thư mục</NavDropdown.Item>
                             <NavDropdown.Item>Lớp học</NavDropdown.Item>
                         </NavDropdown>
-                        <NavDropdown title="Cài đặt chung" id="basic-nav-dropdown">
-                            <NavDropdown.Item>Tên user</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item>Hồ sơ</NavDropdown.Item>
-                            <NavDropdown.Item>Ngôn ngữ</NavDropdown.Item>
-                            <NavDropdown.Item>Cài đặt</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item>Đăng xuất</NavDropdown.Item>
-                        </NavDropdown>
-                        <div></div>
-                        <button
-                            className="btn btn-light"
-                            onClick={() => {
-                                navigate("/login");
-                            }}
-                        >
-                            Đăng nhập
-                        </button>
-                        <button
-                            className="btn btn-warning"
-                            onClick={() => {
-                                navigate("/register");
-                            }}
-                        >
-                            Đăng ký
-                        </button>
+
+                        {isAuthenticated === false ? (
+                            <>
+                                <button
+                                    className="btn btn-light"
+                                    onClick={() => {
+                                        navigate("/login");
+                                    }}
+                                >
+                                    Đăng nhập
+                                </button>
+                                <button
+                                    className="btn btn-warning"
+                                    onClick={() => {
+                                        navigate("/register");
+                                    }}
+                                >
+                                    Đăng ký
+                                </button>
+                            </>
+                        ) : (
+                            <NavDropdown title="Cài đặt chung" id="basic-nav-dropdown">
+                                <NavDropdown.Item>Tên user</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item>Hồ sơ</NavDropdown.Item>
+                                <NavDropdown.Item>Ngôn ngữ</NavDropdown.Item>
+                                <NavDropdown.Item>Cài đặt</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item>Đăng xuất</NavDropdown.Item>
+                            </NavDropdown>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

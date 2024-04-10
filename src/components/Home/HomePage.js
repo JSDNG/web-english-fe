@@ -1,6 +1,9 @@
 import imageHomePage from "../../assets/image/imageHomepage.avif";
-
+import { useSelector } from "react-redux";
 const HomePage = () => {
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+    const account = useSelector((state) => state.user.account);
+
     return (
         <div className="homepage-container">
             <>

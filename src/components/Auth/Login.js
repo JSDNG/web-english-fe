@@ -9,14 +9,16 @@ import { postLogin } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
+
+import { useDispatch } from "react-redux";
+import { doLogin } from "../../redux/action/userAction";
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const [showPassword, setShowPassword] = useState(false);
-
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -40,13 +42,14 @@ const Login = () => {
         }
 
         //api
-        let res = await postLogin(email, password);
-        if (res && +res.EC === 0) {
-            toast.success(res.EM);
+        let data = await postLogin(email, password);
+        if (data && +data.EC === 0) {
+            dispatch(doLogin(data));
+            toast.success(data.EM);
             navigate("/");
         }
-        if (res && +res.EC !== 0) {
-            toast.error(res.EM);
+        if (data && +data.EC !== 0) {
+            toast.error(data.EM);
         }
     };
 
@@ -98,7 +101,7 @@ const Login = () => {
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
-                    {setShowPassword ? (
+                    {showPassword ? (
                         <span className="icons-eye" onClick={() => setShowPassword(false)}>
                             <VscEye />
                         </span>
