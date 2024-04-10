@@ -7,9 +7,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 const Header = () => {
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        navigate("/login");
-    };
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -59,12 +56,19 @@ const Header = () => {
                         <button
                             className="btn btn-light"
                             onClick={() => {
-                                handleLogin();
+                                navigate("/login");
                             }}
                         >
                             Đăng nhập
                         </button>
-                        <button className="btn btn-warning">Đăng ký</button>
+                        <button
+                            className="btn btn-warning"
+                            onClick={() => {
+                                navigate("/register");
+                            }}
+                        >
+                            Đăng ký
+                        </button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

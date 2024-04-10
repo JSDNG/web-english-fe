@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { IoArrowBackOutline } from "react-icons/io5";
-import "./Login.scss";
+import "./Register.scss";
 
 import { useNavigate } from "react-router-dom";
-import { postLogin } from "../../services/apiService";
+import { postRegister } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { VscEye } from "react-icons/vsc";
 import { VscEyeClosed } from "react-icons/vsc";
-const Login = () => {
+const Register = () => {
     const [email, setEmail] = useState("");
+    const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
     const [showPassword, setShowPassword] = useState(false);
-
     const navigate = useNavigate();
 
     const validateEmail = (email) => {
@@ -25,8 +25,9 @@ const Login = () => {
             );
     };
 
-    const handleLogin = async () => {
+    const handleRegister = async () => {
         //validate
+
         const inValidEmail = validateEmail(email);
 
         if (!inValidEmail) {
@@ -39,11 +40,16 @@ const Login = () => {
             return;
         }
 
+        if (!username) {
+            toast.error("invalid username");
+            return;
+        }
         //api
-        let res = await postLogin(email, password);
+        let res = await postRegister(email, username, password);
+
         if (res && +res.EC === 0) {
             toast.success(res.EM);
-            navigate("/");
+            navigate("/login");
         }
         if (res && +res.EC !== 0) {
             toast.error(res.EM);
@@ -65,27 +71,37 @@ const Login = () => {
                 />
             </div>
             <div className="action-choose">
+                <button className="btn btn-light col-2" disabled>
+                    Register
+                </button>
                 <button
                     className="btn btn-light col-2"
                     onClick={() => {
-                        navigate("/register");
+                        navigate("/login");
                     }}
                 >
-                    Register
-                </button>
-                <button className="btn btn-light col-2" disabled>
                     Log in
                 </button>
             </div>
-            <div className="login-container col-4">
+            <div className="register-container col-4">
                 <div>
-                    <label className="form-label">Email</label>
+                    <label className="form-label">Email(*)</label>
                     <input
                         type={"email"}
                         className="form-control"
                         name="email"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
+                    />
+                </div>
+                <div>
+                    <label className="form-label">UserName(*)</label>
+                    <input
+                        type={"text"}
+                        className="form-control"
+                        name="username"
+                        value={username}
+                        onChange={(event) => setUserName(event.target.value)}
                     />
                 </div>
                 <div className="password-custom">
@@ -98,7 +114,7 @@ const Login = () => {
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
-                    {setShowPassword ? (
+                    {showPassword ? (
                         <span className="icons-eye" onClick={() => setShowPassword(false)}>
                             <VscEye />
                         </span>
@@ -108,17 +124,14 @@ const Login = () => {
                         </span>
                     )}
                 </div>
-                <div className="forgot-password">
-                    <span>Forgot password?</span>
-                </div>
                 <div>
                     <button
                         className="btn btn-primary"
                         onClick={() => {
-                            handleLogin();
+                            handleRegister();
                         }}
                     >
-                        Log in
+                        Register
                     </button>
                 </div>
 
@@ -143,4 +156,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

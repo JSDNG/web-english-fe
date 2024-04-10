@@ -17,25 +17,18 @@
         margin-right: 15px;
     }
 }
-.login-container {
+.register-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 20px;
 
     margin-left: 930px;
-
     padding-top: 20px;
 
     button {
         width: 100%;
         height: 40px;
-    }
-    .forgot-password {
-        cursor: pointer;
-        text-decoration: underline;
-        display: flex;
-        justify-content: right;
     }
     .password-custom {
         position: relative;
