@@ -19,6 +19,13 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const handleKeyDown = (event) => {
+        if (event && event.key === "Enter") {
+            handleLogin();
+        }
+    };
+
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -58,7 +65,7 @@ const Login = () => {
             <img
                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                 className="image"
-                alt="Phone image"
+                alt=""
             />
             <div className="back">
                 <IoArrowBackOutline
@@ -100,6 +107,7 @@ const Login = () => {
                         autoComplete="off"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
+                        onKeyDown={(event) => handleKeyDown(event)}
                     />
                     {showPassword ? (
                         <span className="icons-eye" onClick={() => setShowPassword(false)}>

@@ -61,7 +61,7 @@ const Register = () => {
             <img
                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                 className="image"
-                alt="Phone image"
+                alt=""
             />
             <div className="back">
                 <IoArrowBackOutline
