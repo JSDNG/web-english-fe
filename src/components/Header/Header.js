@@ -33,15 +33,13 @@ const Header = () => {
                         {/* <NavLink to="#" className="nav-link">
                             Lời giải chuyên gia
                         </NavLink> */}
-                        {account.role === "ADMIN" ? (
-                            <NavLink to="/admin" className="nav-link">
-                                Admin
-                            </NavLink>
-                        ) : (
-                            <NavLink to="/user" className="nav-link">
-                                User
-                            </NavLink>
-                        )}
+
+                        <NavLink to="/admin" className="nav-link">
+                            Admin
+                        </NavLink>
+                        <NavLink to="/user" className="nav-link">
+                            User
+                        </NavLink>
                     </Nav>
                     <Nav>
                         <NavDropdown title="Thêm" id="basic-nav-dropdown">
