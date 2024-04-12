@@ -53,7 +53,7 @@ const Login = () => {
         if (data && +data.EC === 0) {
             dispatch(doLogin(data));
             toast.success(data.EM);
-            navigate("/");
+            navigate("/home");
         }
         if (data && +data.EC !== 0) {
             toast.error(data.EM);

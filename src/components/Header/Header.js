@@ -7,7 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { doLogout } from "../../redux/action/userAction";
-const Header = () => {
+
+import ManageFolder from "../Profile/Folder/ManageFolder";
+import { useState } from "react";
+const Header = (props) => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
     const account = useSelector((state) => state.user.account);
     const dispatch = useDispatch();
@@ -40,16 +43,23 @@ const Header = () => {
                             Trang chủ
                         </NavLink>
                         <NavDropdown title="Thư viện của bạn" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Học phần</NavDropdown.Item>
+                            <NavDropdown.Item>
+                                <NavLink to="/profile" className="nav-link">
+                                    Học phần
+                                </NavLink>
+                            </NavDropdown.Item>
 
-                            <NavDropdown.Item href="#action/3.2">Thư mục</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Lớp</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                            <NavDropdown.Item>
+                                <NavLink to="/profile/folders" className="nav-link">
+                                    Thư mục
+                                </NavLink>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item>
+                                <NavLink to="/profile/classes" className="nav-link">
+                                    Lớp
+                                </NavLink>
+                            </NavDropdown.Item>
                         </NavDropdown>
-                        {/* <NavLink to="#" className="nav-link">
-                            Lời giải chuyên gia
-                        </NavLink> */}
 
                         <NavLink to="/admin" className="nav-link">
                             Admin
@@ -86,9 +96,13 @@ const Header = () => {
                             </>
                         ) : (
                             <NavDropdown title="Cài đặt chung" id="basic-nav-dropdown">
-                                <NavDropdown.Item>{account.username}</NavDropdown.Item>
+                                <NavDropdown.Item> {account.username}</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item>Hồ sơ</NavDropdown.Item>
+                                <NavDropdown.Item>
+                                    <NavLink to="/profile" className="nav-link">
+                                        Hồ sơ
+                                    </NavLink>
+                                </NavDropdown.Item>
                                 <NavDropdown.Item>Ngôn ngữ</NavDropdown.Item>
                                 <NavDropdown.Item>Cài đặt</NavDropdown.Item>
                                 <NavDropdown.Divider />
