@@ -3,14 +3,13 @@ import Button from "react-bootstrap/Button";
 
 import Modal from "react-bootstrap/Modal";
 
-const ModalFolder = (props) => {
+const ModalAddMember = (props) => {
     const { show, setShow } = props;
     const handleClose = () => setShow(false);
 
-    const [title, setTitle] = useState("");
-    const [desc, setDesc] = useState("");
+    const [infoMember, setInfoMember] = useState("");
 
-    const handleCreateFolder = () => {
+    const handleAddMember = () => {
         setShow(false);
         //console.log(title, desc);
     };
@@ -25,33 +24,28 @@ const ModalFolder = (props) => {
                 className="modal-add-user"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Tạo thư mục mới</Modal.Title>
+                    <Modal.Title>Mời thành viên</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="row g-3">
                         <div className="col-md-12">
-                            <label className="form-label">Tiêu đề</label>
+                            <label className="form-label">
+                                Để mời thành viên tham gia lớp học này, hãy nhập tên người dùng hoặc email Quizlet của
+                                họ bên dưới (phân tách bằng dấu phẩy hoặc ngắt dòng).
+                            </label>
                             <input
                                 type="text"
                                 className="form-control"
-                                value={title}
-                                onChange={(event) => setTitle(event.target.value)}
-                            />
-                        </div>
-                        <div className="col-md-12">
-                            <label className="form-label">Mô tả</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={desc}
-                                onChange={(event) => setDesc(event.target.value)}
+                                value={infoMember}
+                                onChange={(event) => setInfoMember(event.target.value)}
+                                placeholder="Nhập tên người dùng hoặc email"
                             />
                         </div>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => handleCreateFolder()}>
-                        Save Changes
+                    <Button variant="primary" onClick={() => handleAddMember()}>
+                        Save
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -59,4 +53,4 @@ const ModalFolder = (props) => {
     );
 };
 
-export default ModalFolder;
+export default ModalAddMember;

@@ -89,7 +89,7 @@ const Login = () => {
             </div>
             <div className="login-container col-4">
                 <div>
-                    <label className="form-label">Email</label>
+                    <label className="form-label">Email(*)</label>
                     <input
                         type={"email"}
                         className="form-control"

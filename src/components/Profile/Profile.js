@@ -5,6 +5,7 @@ const Profile = (props) => {
     return (
         <div className="profile-container">
             <div className="profile-header">
+                <span>image</span>
                 <span>email</span>
             </div>
 

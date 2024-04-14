@@ -7,14 +7,17 @@ import DashBoard from "./components/Admin/Content/DashBoard";
 import ManageUser from "./components/Admin/Content/ManageUser";
 
 import Profile from "./components/Profile/Profile";
-import StudySet from "./components/Profile/StudySet/StudySet";
-import Folder from "./components/Profile/Folder/Folder";
-import Class from "./components/Profile/Class/Class";
+import ManageClass from "./components/Profile/Class/ManageClass";
+import ListStudySet from "./components/Profile/StudySet/ListStudySet";
+import ManageFolder from "./components/Profile/Folder/ManageFolder";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import HomePage1 from "./components/Home/HomePage1";
+import CreateCard from "./components/Profile/StudySet/CreateCard";
+import ListQuiz from "./components/User/ListQuiz";
 
 const Layout = (props) => {
     return (
@@ -22,14 +25,16 @@ const Layout = (props) => {
             <Routes>
                 <Route path="/" element={<App />}>
                     <Route index element={<HomePage />} />
-                    <Route path="user" element={<User />} />
+                    <Route path="user" element={<ListQuiz />} />
                     <Route path="home" element={<HomePage1 />} />
                     <Route path="/profile" element={<Profile />}>
-                        <Route index element={<StudySet />} />
-                        <Route path="folders" element={<Folder />} />
-                        <Route path="Classes" element={<Class />} />
+                        <Route index element={<ListStudySet />} />
+                        <Route path="folders" element={<ManageFolder />} />
+                        <Route path="Classes" element={<ManageClass />} />
                     </Route>
+                    <Route path="/create-card" element={<CreateCard />} />
                 </Route>
+
                 <Route path="/admin" element={<Admin />}>
                     <Route index element={<DashBoard />} />
                     <Route path="manage-user" element={<ManageUser />} />

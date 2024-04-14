@@ -1,9 +1,11 @@
 import imageHomePage from "../../assets/image/imageHomepage.avif";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const HomePage = () => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
     const account = useSelector((state) => state.user.account);
 
+    const navigate = useNavigate();
     return (
         <div className="homepage-container">
             <>
@@ -17,7 +19,13 @@ const HomePage = () => {
                         bài kiểm tra thử và lời giải chuyên gia của Quizlet để cải thiện điểm số và đạt được mục tiêu.
                     </div>
                     <div className="titlec">
-                        <button type="button" className="btn btn-primary">
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={() => {
+                                navigate("/register");
+                            }}
+                        >
                             Đăng ký miễn phí
                         </button>
                     </div>

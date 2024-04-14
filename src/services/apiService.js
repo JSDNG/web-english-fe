@@ -7,11 +7,11 @@ const postCreacteNewUser = (email, password, username, role, image) => {
     data.append("username", username);
     data.append("role", role);
     data.append("userImage", image);
-    return axios.post("api/v1/participant", data);
+    return axios.post("/api/v1/participant", data);
 };
 
 const getAllUsers = () => {
-    return axios.get("api/v1/participant/all");
+    return axios.get("/api/v1/participant/all");
 };
 
 const putUpdateUser = (id, username, role, image) => {
@@ -21,21 +21,34 @@ const putUpdateUser = (id, username, role, image) => {
     data.append("username", username);
     data.append("role", role);
     data.append("userImage", image);
-    return axios.put("api/v1/participant", data);
+    return axios.put("/api/v1/participant", data);
 };
 const deleteUser = (id) => {
-    return axios.delete("api/v1/participant", { data: { id } });
+    return axios.delete("/api/v1/participant", { data: { id } });
 };
 const getUserWithPage = (page, limit) => {
-    return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
+    return axios.get(`/api/v1/participant?page=${page}&limit=${limit}`);
 };
 const postLogin = (email, password) => {
-    return axios.post("api/v1/login", { email, password });
+    return axios.post("/api/v1/login", { email, password });
 };
 const postRegister = (email, username, password) => {
-    return axios.post("api/v1/register", { email, username, password });
+    return axios.post("/api/v1/register", { email, username, password });
 };
 const logout = (email, refresh_token) => {
-    return axios.post("api/v1/logout", { email, refresh_token });
+    return axios.post("/api/v1/logout", { email, refresh_token });
 };
-export { postCreacteNewUser, getAllUsers, putUpdateUser, deleteUser, getUserWithPage, postLogin, postRegister, logout };
+const getQuizByUser = () => {
+    return axios.get("/api/v1/quiz-by-participant");
+};
+export {
+    postCreacteNewUser,
+    getAllUsers,
+    putUpdateUser,
+    deleteUser,
+    getUserWithPage,
+    postLogin,
+    postRegister,
+    logout,
+    getQuizByUser,
+};
