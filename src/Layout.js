@@ -1,6 +1,5 @@
 import App from "./App";
 import { Route, Routes } from "react-router-dom";
-import User from "./components/User/User";
 import Admin from "./components/Admin/Admin";
 import HomePage from "./components/Home/HomePage";
 import DashBoard from "./components/Admin/Content/DashBoard";
@@ -18,6 +17,7 @@ import Register from "./components/Auth/Register";
 import HomePage1 from "./components/Home/HomePage1";
 import CreateCard from "./components/Profile/StudySet/CreateCard";
 import ListQuiz from "./components/User/ListQuiz";
+import DetailQuiz from "./components/User/DetailQuiz";
 
 const Layout = (props) => {
     return (
@@ -26,6 +26,7 @@ const Layout = (props) => {
                 <Route path="/" element={<App />}>
                     <Route index element={<HomePage />} />
                     <Route path="user" element={<ListQuiz />} />
+
                     <Route path="home" element={<HomePage1 />} />
                     <Route path="/profile" element={<Profile />}>
                         <Route index element={<ListStudySet />} />
@@ -34,13 +35,14 @@ const Layout = (props) => {
                     </Route>
                     <Route path="/create-card" element={<CreateCard />} />
                 </Route>
-
+                <Route path="/quiz/:id" element={<DetailQuiz />} />
                 <Route path="/admin" element={<Admin />}>
                     <Route index element={<DashBoard />} />
                     <Route path="manage-user" element={<ManageUser />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                {/* <Route path="*" element={<NotFound />} /> */}
             </Routes>
             <ToastContainer
                 position="top-right"

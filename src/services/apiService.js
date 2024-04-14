@@ -41,6 +41,9 @@ const logout = (email, refresh_token) => {
 const getQuizByUser = () => {
     return axios.get("/api/v1/quiz-by-participant");
 };
+const getDataQuiz = (id) => {
+    return axios.get(`/api/v1/questions-by-quiz?quizId=${id}`);
+};
 export {
     postCreacteNewUser,
     getAllUsers,
@@ -51,4 +54,5 @@ export {
     postRegister,
     logout,
     getQuizByUser,
+    getDataQuiz,
 };
