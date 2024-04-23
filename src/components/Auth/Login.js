@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { IoArrowBackOutline } from "react-icons/io5";
@@ -12,6 +12,7 @@ import { VscEyeClosed } from "react-icons/vsc";
 
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
+import axios from "axios";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -20,6 +21,11 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/account/all").then((data) => {
+            console.log(">>>>", data);
+        });
+    });
     const handleKeyDown = (event) => {
         if (event && event.key === "Enter") {
             handleLogin();
