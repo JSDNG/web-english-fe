@@ -30,7 +30,6 @@ const Header = (props) => {
             toast.error(res.EM);
         }
     };
-
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -85,7 +84,7 @@ const Header = (props) => {
                                 <NavDropdown title="Thư viện của bạn" id="basic-nav-dropdown">
                                     <NavDropdown.Item
                                         onClick={() => {
-                                            navigate("/profile");
+                                            navigate("/profile/sets");
                                         }}
                                     >
                                         Học phần

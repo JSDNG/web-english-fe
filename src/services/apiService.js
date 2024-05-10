@@ -44,6 +44,10 @@ const getQuizByUser = () => {
 const getDataQuiz = (id) => {
     return axios.get(`/api/v1/questions-by-quiz?quizId=${id}`);
 };
+
+const getAllStudySet = () => {
+    return axios.get("/api/v1/studyset");
+};
 export {
     postCreacteNewUser,
     getAllUsers,
@@ -55,4 +59,5 @@ export {
     logout,
     getQuizByUser,
     getDataQuiz,
+    getAllStudySet,
 };

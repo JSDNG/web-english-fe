@@ -3,10 +3,11 @@ import "./Profile.scss";
 import { Outlet } from "react-router-dom";
 const Profile = (props) => {
     return (
-        <div className="profile-container">
+        <div className="profile-container container">
             <div className="profile-header">
-                <span>image</span>
-                <span>email</span>
+                <span>Thư viện của bạn</span>
+                {/* <span>image</span>
+                <span>email</span> */}
             </div>
 
             <div className="profile-content">

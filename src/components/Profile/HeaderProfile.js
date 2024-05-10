@@ -10,7 +10,7 @@ const HeaderProfile = (props) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <NavLink to="/profile" className="nav-link">
+                        <NavLink to="/profile/sets" className="nav-link">
                             Học phần
                         </NavLink>
                         <NavLink to="/profile/folders" className="nav-link">
