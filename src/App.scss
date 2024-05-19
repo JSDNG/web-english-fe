@@ -45,6 +45,14 @@ body {
                 .nav-link {
                     color: black !important;
                 }
+                .dropdown-menu[data-bs-popper] {
+                    left: auto;
+                    right: 0;
+                }
+
+                .dropdown-toggle::after {
+                    display: none !important;
+                }
             }
             form.d-flex {
                 width: 600px !important;

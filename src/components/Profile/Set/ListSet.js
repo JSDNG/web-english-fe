@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { getAllStudySet } from "../../../services/apiService";
-import "./Set.scss";
+import { getAllSet } from "../../../services/apiService";
+import "./ListSet.scss";
 const ListStudySet = (props) => {
     const [arrSet, setArrSet] = useState([]);
     const navigate = useNavigate();
@@ -11,12 +11,11 @@ const ListStudySet = (props) => {
     }, []);
 
     const getData = async () => {
-        let res = await getAllStudySet();
+        let res = await getAllSet();
         if (res && res.EC === 0) {
             setArrSet(res.DT);
         }
     };
-
     return (
         <>
             <div className="set-header container">
@@ -32,7 +31,11 @@ const ListStudySet = (props) => {
                     arrSet.length > 0 &&
                     arrSet.map((item, index) => {
                         return (
-                            <div className="card-content card">
+                            <div
+                                key={`${index}-set`}
+                                className="card-content card"
+                                onClick={() => navigate(`/flash-cards/${item.id}`)}
+                            >
                                 <div className="card-text">
                                     <p>
                                         {item.cards} &#124; {item.userId.username} &#124;
@@ -40,9 +43,6 @@ const ListStudySet = (props) => {
                                 </div>
                                 <div className="card-body-1">
                                     <p className="card-text">{item.studySetName}</p>
-                                    <button className="btn btn-primary" onClick={() => navigate()}>
-                                        Detail
-                                    </button>
                                 </div>
                             </div>
                         );

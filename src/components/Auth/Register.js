@@ -13,7 +13,7 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-
+    const [group, setGroup] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
@@ -44,8 +44,12 @@ const Register = () => {
             toast.error("invalid username");
             return;
         }
+        if (!group) {
+            toast.error("invalid group");
+            return;
+        }
         //api
-        let res = await postRegister(email, username, password);
+        let res = await postRegister(email, password, username, group);
 
         if (res && +res.EC === 0) {
             toast.success(res.EM);
@@ -123,6 +127,13 @@ const Register = () => {
                             <VscEyeClosed />
                         </span>
                     )}
+                </div>
+                <div>
+                    <label className="form-label">Group</label>
+                    <select className="form-select" onChange={(event) => setGroup(event.target.value)} value={group}>
+                        <option value="1">TEACHER</option>
+                        <option value="2">STUDENT</option>
+                    </select>
                 </div>
                 <div>
                     <button

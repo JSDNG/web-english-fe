@@ -15,7 +15,6 @@ const Header = (props) => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
     const account = useSelector((state) => state.user.account);
     const dispatch = useDispatch();
-    //console.log(account);
     const navigate = useNavigate();
 
     const handleLogOut = async () => {
@@ -163,7 +162,16 @@ const Header = (props) => {
                                         Lớp học
                                     </NavDropdown.Item>
                                 </NavDropdown>
-                                <NavDropdown title="Cài đặt chung" id="basic-nav-dropdown">
+                                <NavDropdown
+                                    title={
+                                        <img
+                                            src={`data:image/png;base64, ${account.image}`}
+                                            alt="Cài đặt chung"
+                                            style={{ width: "30px", height: "30px" }}
+                                        />
+                                    }
+                                    id="basic-nav-dropdown"
+                                >
                                     <NavDropdown.Item> {account.username}</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item

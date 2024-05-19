@@ -32,8 +32,8 @@ const getUserWithPage = (page, limit) => {
 const postLogin = (email, password) => {
     return axios.post("/api/v1/login", { email, password });
 };
-const postRegister = (email, username, password) => {
-    return axios.post("/api/v1/register", { email, username, password });
+const postRegister = (email, password, username, groupId) => {
+    return axios.post("/api/v1/register", { email, password, username, groupId });
 };
 const logout = (email, refresh_token) => {
     return axios.post("/api/v1/logout", { email, refresh_token });
@@ -45,8 +45,11 @@ const getDataQuiz = (id) => {
     return axios.get(`/api/v1/questions-by-quiz?quizId=${id}`);
 };
 
-const getAllStudySet = () => {
+const getAllSet = () => {
     return axios.get("/api/v1/studyset");
+};
+const getDataSet = (id) => {
+    return axios.get(`/api/v1/studyset/${id}`);
 };
 export {
     postCreacteNewUser,
@@ -59,5 +62,6 @@ export {
     logout,
     getQuizByUser,
     getDataQuiz,
-    getAllStudySet,
+    getAllSet,
+    getDataSet,
 };
