@@ -13,8 +13,14 @@ body {
     .container-sm,
     .container-xl,
     .container-xxl {
-        max-width: 1450px !important;
+        max-width: 1500px !important;
     }
+}
+a.navbar-brand.header-custom {
+    color: #2c22ec;
+    font-size: 30px;
+    font-weight: 700;
+    justify-self: center;
 }
 .app-container {
     .app-header-container {

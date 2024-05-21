@@ -33,12 +33,12 @@ const Header = (props) => {
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
                 {isAuthenticated === false ? (
-                    <NavLink to="/" className="navbar-brand">
-                        Quizlet Clone
+                    <NavLink to="/" className="navbar-brand header-custom">
+                        Quizlet
                     </NavLink>
                 ) : (
-                    <NavLink to="/home" className="navbar-brand">
-                        Quizlet Clone
+                    <NavLink to="/home" className="navbar-brand header-custom">
+                        Quizlet
                     </NavLink>
                 )}
 
@@ -142,21 +142,21 @@ const Header = (props) => {
                                 <NavDropdown title="Thêm" id="basic-nav-dropdown">
                                     <NavDropdown.Item
                                         onClick={() => {
-                                            navigate("/create-card");
+                                            navigate("/create-set");
                                         }}
                                     >
                                         Học phần
                                     </NavDropdown.Item>
                                     <NavDropdown.Item
                                         onClick={() => {
-                                            navigate("/create-card");
+                                            navigate("/create-set");
                                         }}
                                     >
                                         Thư mục
                                     </NavDropdown.Item>
                                     <NavDropdown.Item
                                         onClick={() => {
-                                            navigate("/create-card");
+                                            navigate("/create-set");
                                         }}
                                     >
                                         Lớp học

@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import HomePage1 from "./components/Home/HomePage1";
-import CreateCard from "./components/Profile/Set/CreateCard";
+import CreateSet from "./components/Profile/Set/CreateSet";
 import ListQuiz from "./components/User/ListQuiz";
 import DetailQuiz from "./components/User/DetailQuiz";
 
@@ -34,7 +34,7 @@ const Layout = (props) => {
                         <Route path="folders" element={<ManageFolder />} />
                         <Route path="Classes" element={<ManageClass />} />
                     </Route>
-                    <Route path="/create-card" element={<CreateCard />} />
+                    <Route path="/create-set" element={<CreateSet />} />
                 </Route>
 
                 <Route path="/quiz/:id" element={<DetailQuiz />} />

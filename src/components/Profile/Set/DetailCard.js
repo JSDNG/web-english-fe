@@ -7,10 +7,10 @@ const DetailCard = (props) => {
         return <></>;
     }
 
-    console.log(card);
+    // console.log(card);
     return (
         <>
-            <div key={`${card?.id}-card`} className="card-content card">
+            <div key={`${card?.id}-card`} className="detail-card card">
                 <div className="card-text">
                     <p>{card?.term}</p>
                     {/* <p>definition :{card?.definition}</p> */}
