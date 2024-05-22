@@ -1,26 +1,72 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./CreateSet.scss";
+import { v4 as uuidv4 } from "uuid";
+import _ from "lodash";
+import { postCreateNewSet } from "../../../services/apiService";
+import { toast } from "react-toastify";
 const CreateSet = (props) => {
     const [cardIndex, SetCardIndex] = useState(0);
     const [title, setTitle] = useState("");
-    const [tern, setTern] = useState("");
-    const [definition, setDefinition] = useState("");
+    const [arrCard, setArrCard] = useState([
+        {
+            id: uuidv4(),
+            term: "",
+            definition: "",
+        },
+    ]);
 
     const userId = useSelector((state) => state.user.account.user_id);
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         let data = {
             studySetName: title,
             userId: userId,
-            cards: [],
+            cards: arrCard,
         };
-        let cards = [
-            {
-                tern: "",
+        data.cards.forEach((card) => {
+            delete card.id;
+        });
+
+        let res = await postCreateNewSet(data);
+        if (res && res.EC === 0) {
+            toast.success(res.EM);
+        }
+        if (res && +res.EC !== 0) {
+            toast.error(res.EM);
+        }
+    };
+    const handleAddDeleteCard = (type, id) => {
+        if (type === "ADD") {
+            let newCard = {
+                id: uuidv4(),
+                term: "",
                 definition: "",
-            },
-        ];
-        console.log(data);
+            };
+            setArrCard([...arrCard, newCard]);
+        }
+        if (type == "DELETE") {
+            let arrCardClone = _.cloneDeep(arrCard);
+            arrCardClone = arrCardClone.filter((item) => item.id !== id);
+            setArrCard(arrCardClone);
+        }
+    };
+    const handelOnChange = (type, id, value) => {
+        if (type === "term") {
+            let arrCardClone = _.cloneDeep(arrCard);
+            let index = arrCardClone.findIndex((item) => item.id == id);
+            if (index > -1) {
+                arrCardClone[index].term = value;
+                setArrCard(arrCardClone);
+            }
+        }
+        if (type === "definition") {
+            let arrCardClone = _.cloneDeep(arrCard);
+            let index = arrCardClone.findIndex((item) => item.id == id);
+            if (index > -1) {
+                arrCardClone[index].definition = value;
+                setArrCard(arrCardClone);
+            }
+        }
     };
     return (
         <div className="create-set-container">
@@ -37,37 +83,53 @@ const CreateSet = (props) => {
                     onChange={(event) => setTitle(event.target.value)}
                 />
             </div>
-            <div className="set-main-container">
-                <div className="card">
-                    <div className="card-header-1 container">
-                        <span>1</span>
-                        <button className="btn btn-light">Delete</button>
-                    </div>
-                    <hr />
-                    <div className="card-body-1 container">
-                        <div className="col-sm-6">
-                            <input
-                                type="text"
-                                className="form-control "
-                                placeholder="Thuật ngữ"
-                                value={tern}
-                                onChange={(event) => setTern(event.target.value)}
-                            />
+
+            {arrCard &&
+                arrCard.length > 0 &&
+                arrCard.map((item, index) => {
+                    return (
+                        <div key={`${index}-card`} className="card card-main-container">
+                            <div className="card-header-1 container">
+                                <span>{index + 1}</span>
+                                {arrCard.length > 1 && (
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => handleAddDeleteCard("DELETE", item.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                )}
+                            </div>
+                            <hr />
+
+                            <div className="cards-content container">
+                                <div className="col-sm-6">
+                                    <input
+                                        type="text"
+                                        className="form-control "
+                                        placeholder="Thuật ngữ"
+                                        value={item.term}
+                                        onChange={(event) => handelOnChange("term", item.id, event.target.value)}
+                                    />
+                                </div>
+                                <div className="col-sm-6">
+                                    <input
+                                        type="text"
+                                        className="form-control "
+                                        placeholder="Định nghĩa"
+                                        value={item.definition}
+                                        onChange={(event) => handelOnChange("definition", item.id, event.target.value)}
+                                    />
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-sm-6">
-                            <input
-                                type="text"
-                                className="form-control "
-                                placeholder="Định nghĩa"
-                                value={definition}
-                                onChange={(event) => setDefinition(event.target.value)}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    );
+                })}
+
             <div className="text-center">
-                <button className="btn btn-primary text">Thêm thẻ</button>
+                <button className="btn btn-primary text" onClick={() => handleAddDeleteCard("ADD", "")}>
+                    Thêm thẻ
+                </button>
             </div>
             <div className="create-set-footer">
                 <button className="btn btn-light " onClick={() => handleSubmit()}>

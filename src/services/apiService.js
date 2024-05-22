@@ -51,6 +51,10 @@ const getAllSet = () => {
 const getDataSet = (id) => {
     return axios.get(`/api/v1/studyset/${id}`);
 };
+const postCreateNewSet = (data) => {
+    console.log({ ...data });
+    return axios.post(`/api/v1/studyset`, { ...data });
+};
 export {
     postCreacteNewUser,
     getAllUsers,
@@ -64,4 +68,5 @@ export {
     getDataQuiz,
     getAllSet,
     getDataSet,
+    postCreateNewSet,
 };
