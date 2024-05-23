@@ -36,13 +36,13 @@ const ListStudySet = (props) => {
                                 className="card-content card"
                                 onClick={() => navigate(`/flash-cards/${item.id}`)}
                             >
-                                <div className="card-text">
+                                <div className="card-header-text">
                                     <p>
                                         {item.cards} &#124; {item.userId.username} &#124;
                                     </p>
                                 </div>
-                                <div className="card-body-1">
-                                    <p className="card-text">{item.studySetName}</p>
+                                <div className="card-body-content">
+                                    <p className="card-body-text">{item.studySetName}</p>
                                 </div>
                             </div>
                         );

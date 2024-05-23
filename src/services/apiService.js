@@ -45,6 +45,7 @@ const getDataQuiz = (id) => {
     return axios.get(`/api/v1/questions-by-quiz?quizId=${id}`);
 };
 
+//Set
 const getAllSet = () => {
     return axios.get("/api/v1/studyset");
 };
@@ -54,6 +55,14 @@ const getDataSet = (id) => {
 const postCreateNewSet = (data) => {
     console.log({ ...data });
     return axios.post(`/api/v1/studyset`, { ...data });
+};
+
+//Folder
+const getAllFolder = () => {
+    return axios.get("/api/v1/folder");
+};
+const getDataFolder = (id) => {
+    return axios.get(`/api/v1/folder/${id}`);
 };
 export {
     postCreacteNewUser,
@@ -69,4 +78,6 @@ export {
     getAllSet,
     getDataSet,
     postCreateNewSet,
+    getAllFolder,
+    getDataFolder,
 };

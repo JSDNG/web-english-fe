@@ -1,26 +1,30 @@
 .set-header {
     display: flex;
-    gap: 600px;
+
     padding-bottom: 30px;
     .d-flex {
         width: 464px !important;
+    }
+    .search {
+        margin-left: auto;
     }
 }
 
 .list-set {
     display: grid;
     gap: 10px;
-    padding-right: 300px !important;
+
     .card-content {
+        cursor: pointer;
         padding: 10px 20px 0;
-        .card-text {
+        .card-header-text {
             display: flex;
             gap: 10px;
         }
-        .card-body-1 {
-            display: flex;
-            gap: 10px;
-            .card-text {
+        .card-body-content {
+            //display: flex;
+            //gap: 10px;
+            .card-body-text {
                 font-weight: 700;
             }
         }

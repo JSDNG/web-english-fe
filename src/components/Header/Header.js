@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { doLogout } from "../../redux/action/userAction";
-
-import ManageFolder from "../Profile/Folder/ManageFolder";
 import { useState } from "react";
 const Header = (props) => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);

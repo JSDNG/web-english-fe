@@ -9,7 +9,9 @@ import Profile from "./components/Profile/Profile";
 import ManageClass from "./components/Profile/Class/ManageClass";
 import ListSet from "./components/Profile/Set/ListSet";
 import DetailSet from "./components/Profile/Set/DetailSet";
-import ManageFolder from "./components/Profile/Folder/ManageFolder";
+
+import ListFolder from "./components/Profile/Folder/ListFolder";
+import DetailFolder from "./components/Profile/Folder/DetailFolder";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,9 +33,10 @@ const Layout = (props) => {
                     <Route path="home" element={<HomePage1 />} />
                     <Route path="/profile" element={<Profile />}>
                         <Route path="sets" element={<ListSet />} />
-                        <Route path="folders" element={<ManageFolder />} />
+                        <Route path="folders" element={<ListFolder />} />
                         <Route path="Classes" element={<ManageClass />} />
                     </Route>
+                    <Route path="/folders/:id" element={<DetailFolder />} />
                     <Route path="/create-set" element={<CreateSet />} />
                 </Route>
 
