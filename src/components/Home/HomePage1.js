@@ -57,7 +57,7 @@ const HomePage1 = (props) => {
                     </div>
                 </div>
                 <div>
-                    <span className="title">Hãy thử các tính năng cập nhật mới</span>
+                    <span className="title">Lớp của bạn</span>
                     <div className="row row-cols-1 row-cols-md-3 g-4">
                         <div className="col">
                             <div className="card">

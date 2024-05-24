@@ -64,6 +64,14 @@ const getAllFolder = () => {
 const getDataFolder = (id) => {
     return axios.get(`/api/v1/folder/${id}`);
 };
+
+//Class
+const getAllClass = () => {
+    return axios.get("/api/v1/class");
+};
+const getDataClass = (id) => {
+    return axios.get(`/api/v1/class/${id}`);
+};
 export {
     postCreacteNewUser,
     getAllUsers,
@@ -80,4 +88,6 @@ export {
     postCreateNewSet,
     getAllFolder,
     getDataFolder,
+    getAllClass,
+    getDataClass,
 };

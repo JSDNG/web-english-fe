@@ -6,7 +6,8 @@ import DashBoard from "./components/Admin/Content/DashBoard";
 import ManageUser from "./components/Admin/Content/ManageUser";
 
 import Profile from "./components/Profile/Profile";
-import ManageClass from "./components/Profile/Class/ManageClass";
+import ListClass from "./components/Profile/Class/ListClass";
+import DetailClass from "./components/Profile/Class/DetailClass";
 import ListSet from "./components/Profile/Set/ListSet";
 import DetailSet from "./components/Profile/Set/DetailSet";
 
@@ -34,8 +35,9 @@ const Layout = (props) => {
                     <Route path="/profile" element={<Profile />}>
                         <Route path="sets" element={<ListSet />} />
                         <Route path="folders" element={<ListFolder />} />
-                        <Route path="Classes" element={<ManageClass />} />
+                        <Route path="Classes" element={<ListClass />} />
                     </Route>
+                    <Route path="/classes/:id" element={<DetailClass />} />
                     <Route path="/folders/:id" element={<DetailFolder />} />
                     <Route path="/create-set" element={<CreateSet />} />
                 </Route>

@@ -53,7 +53,7 @@ const DetailFolder = (props) => {
                         return (
                             <div
                                 key={`${index}-set`}
-                                className="set-content-folder card col-md"
+                                className="set-content-folder card col-md-6"
                                 onClick={() => navigate(`/flash-cards/${item.id}`)}
                             >
                                 <div className="set-header-text-folder">
