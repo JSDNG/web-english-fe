@@ -1,0 +1,46 @@
+.get-class-home-page {
+    padding-top: 30px;
+    display: grid;
+    gap: 10px;
+    .title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .class-home-custom {
+        .class-navigate {
+            cursor: pointer;
+            .class-home-card {
+                padding: 10px 20px;
+                .class-home-a {
+                    .class-home-a-title {
+                        font-weight: 500;
+                    }
+                }
+
+                .class-home-c {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                    .name-text {
+                        font-size: 12px;
+                        font-weight: 500;
+                    }
+
+                    padding: 20px 0 10px 0;
+                    .card-text-class-home {
+                        font-size: 12px;
+                        font-weight: 500;
+                        border-radius: 10px;
+                        background-color: rgb(210, 207, 255);
+                    }
+                }
+            }
+        }
+    }
+}

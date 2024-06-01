@@ -34,7 +34,13 @@ const ListClass = (props) => {
                             <div
                                 key={`${index}-class`}
                                 className="class-content card"
-                                onClick={() => navigate(`/classes/${item.id}`)}
+                                onClick={() =>
+                                    navigate(`/classes/${item.id}`, {
+                                        state: {
+                                            data: item.className,
+                                        },
+                                    })
+                                }
                             >
                                 <div className="card-header-text-class">
                                     <span className="text">{item.member} thành viên </span>

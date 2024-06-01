@@ -7,7 +7,9 @@ import ManageUser from "./components/Admin/Content/ManageUser";
 
 import Profile from "./components/Profile/Profile";
 import ListClass from "./components/Profile/Class/ListClass";
-import DetailClass from "./components/Profile/Class/DetailClass";
+import ManageDetailClass from "./components/Profile/Class/ManageDetailClass";
+import SetFromClass from "./components/Profile/Class/SetFromClass";
+import Members from "./components/Profile/Class/Members";
 import ListSet from "./components/Profile/Set/ListSet";
 import DetailSet from "./components/Profile/Set/DetailSet";
 
@@ -20,6 +22,7 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import HomePage1 from "./components/Home/HomePage1";
 import CreateSet from "./components/Profile/Set/CreateSet";
+import EditSet from "./components/Profile/Set/EditSet";
 import ListQuiz from "./components/User/ListQuiz";
 import DetailQuiz from "./components/User/DetailQuiz";
 
@@ -35,11 +38,15 @@ const Layout = (props) => {
                     <Route path="/profile" element={<Profile />}>
                         <Route path="sets" element={<ListSet />} />
                         <Route path="folders" element={<ListFolder />} />
-                        <Route path="Classes" element={<ListClass />} />
+                        <Route path="classes" element={<ListClass />} />
                     </Route>
-                    <Route path="/classes/:id" element={<DetailClass />} />
+                    <Route path="/classes/:id" element={<ManageDetailClass />}>
+                        <Route index element={<SetFromClass />} />
+                        <Route path="members" element={<Members />} />
+                    </Route>
                     <Route path="/folders/:id" element={<DetailFolder />} />
                     <Route path="/create-set" element={<CreateSet />} />
+                    <Route path="/edit-set/:id" element={<EditSet />} />
                 </Route>
 
                 <Route path="/quiz/:id" element={<DetailQuiz />} />

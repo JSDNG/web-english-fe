@@ -1,11 +1,12 @@
 .detail-folder-main {
     padding: 40px 300px 20px 40px;
-
+    cursor: pointer;
     .detail-folder-header {
         display: flex;
         align-items: center;
         gap: 30px;
         padding-bottom: 10px;
+
         .total-set {
         }
         .create-by-user {

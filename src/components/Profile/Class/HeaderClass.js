@@ -1,22 +1,21 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink, useNavigate } from "react-router-dom";
-
-const HeaderProfile = (props) => {
+import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
+const HeaderClass = (props) => {
+    const params = useParams();
+    const location = useLocation();
+    const id = params.id;
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <NavLink to="/profile/sets" className="nav-link">
-                        Học phần
+                    <NavLink to={`/classes/${id}`} className="nav-link">
+                        Các học phần
                     </NavLink>
-                    <NavLink to="/profile/folders" className="nav-link">
-                        Thư mục
-                    </NavLink>
-                    <NavLink to="/profile/classes" className="nav-link">
-                        Lớp
+                    <NavLink to={`/classes/${id}/members`} className="nav-link">
+                        Thành viên
                     </NavLink>
                 </Nav>
             </Navbar.Collapse>
@@ -24,4 +23,4 @@ const HeaderProfile = (props) => {
     );
 };
 
-export default HeaderProfile;
+export default HeaderClass;

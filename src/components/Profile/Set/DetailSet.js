@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getDataSet } from "../../../services/apiService";
 import DetailCard from "./DetailCard";
 import "./DetailSet.scss";
 const DetailSet = (props) => {
     const params = useParams();
+    const navigate = useNavigate();
     const id = params.id;
     const [detailSet, setDetailSet] = useState([]);
     const [cardIndex, SetCardIndex] = useState(0);
@@ -76,7 +77,13 @@ const DetailSet = (props) => {
                         })}
                 </div>
                 <div className="btn-update">
-                    <button className="btn btn-primary"> Thêm hoặc xóa thuật ngữ</button>
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => navigate(`/edit-set/${detailSet[0]?.id}`, { state: { data: detailSet } })}
+                    >
+                        {" "}
+                        Thêm hoặc xóa thuật ngữ
+                    </button>
                 </div>
             </div>
         </div>

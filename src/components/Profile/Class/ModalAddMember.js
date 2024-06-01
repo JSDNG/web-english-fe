@@ -4,19 +4,19 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const ModalAddMember = (props) => {
-    const { show, setShow } = props;
-    const handleClose = () => setShow(false);
+    const { showMember, setShowMember } = props;
+    const handleClose = () => setShowMember(false);
 
     const [infoMember, setInfoMember] = useState("");
 
     const handleAddMember = () => {
-        setShow(false);
+        setShowMember(false);
         //console.log(title, desc);
     };
     return (
         <>
             <Modal
-                show={show}
+                show={showMember}
                 onHide={handleClose}
                 animation={false}
                 size="lg"

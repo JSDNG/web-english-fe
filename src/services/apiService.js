@@ -49,6 +49,9 @@ const getDataQuiz = (id) => {
 const getAllSet = () => {
     return axios.get("/api/v1/studyset");
 };
+const getSetWithPage = (page, limit) => {
+    return axios.get(`/api/v1/studyset?page=${page}&limit=${limit}`);
+};
 const getDataSet = (id) => {
     return axios.get(`/api/v1/studyset/${id}`);
 };
@@ -69,8 +72,14 @@ const getDataFolder = (id) => {
 const getAllClass = () => {
     return axios.get("/api/v1/class");
 };
+const getClassWithPage = (page, limit) => {
+    return axios.get(`/api/v1/class?page=${page}&limit=${limit}`);
+};
 const getDataClass = (id) => {
     return axios.get(`/api/v1/class/${id}`);
+};
+const getAllMember = (id) => {
+    return axios.get(`/api/v1/class/members/${id}`);
 };
 export {
     postCreacteNewUser,
@@ -84,10 +93,13 @@ export {
     getQuizByUser,
     getDataQuiz,
     getAllSet,
+    getSetWithPage,
     getDataSet,
     postCreateNewSet,
     getAllFolder,
     getDataFolder,
     getAllClass,
+    getClassWithPage,
     getDataClass,
+    getAllMember,
 };
