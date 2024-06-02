@@ -6,6 +6,7 @@
     .set-header-container {
         display: flex;
         align-items: center;
+        padding-bottom: 30px;
         span {
             font-size: 25px;
             font-weight: 500;
@@ -14,6 +15,14 @@
             border-radius: 7px;
             border-color: rgb(214, 212, 212);
             margin-left: auto;
+        }
+    }
+    .set-header-tille-custom {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        input {
+            width: 50%;
         }
     }
     .card-main-container {

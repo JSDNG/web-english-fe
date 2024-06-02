@@ -59,7 +59,9 @@ const postCreateNewSet = (data) => {
     console.log({ ...data });
     return axios.post(`/api/v1/studyset`, { ...data });
 };
-
+const putUpdateSet = (data) => {
+    return axios.put(`/api/v1/studyset`, { ...data });
+};
 //Folder
 const getAllFolder = () => {
     return axios.get("/api/v1/folder");
@@ -96,6 +98,7 @@ export {
     getSetWithPage,
     getDataSet,
     postCreateNewSet,
+    putUpdateSet,
     getAllFolder,
     getDataFolder,
     getAllClass,

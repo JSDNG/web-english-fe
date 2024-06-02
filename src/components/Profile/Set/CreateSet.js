@@ -51,19 +51,11 @@ const CreateSet = (props) => {
         }
     };
     const handelOnChange = (type, id, value) => {
-        if (type === "term") {
+        if (type === "term" || type === "definition") {
             let arrCardClone = _.cloneDeep(arrCard);
             let index = arrCardClone.findIndex((item) => item.id == id);
             if (index > -1) {
-                arrCardClone[index].term = value;
-                setArrCard(arrCardClone);
-            }
-        }
-        if (type === "definition") {
-            let arrCardClone = _.cloneDeep(arrCard);
-            let index = arrCardClone.findIndex((item) => item.id == id);
-            if (index > -1) {
-                arrCardClone[index].definition = value;
+                arrCardClone[index][type] = value;
                 setArrCard(arrCardClone);
             }
         }
@@ -72,9 +64,11 @@ const CreateSet = (props) => {
         <div className="create-set-container">
             <div className="set-header-container">
                 <span> Tạo học phần mới</span>
-                <button className="btn btn-light">Tạo</button>
+                <button className="btn btn-light" onClick={() => handleSubmit()}>
+                    Tạo
+                </button>
             </div>
-            <div className="input-group mb-3">
+            <div className="set-header-tille-custom input-group mb-3">
                 <input
                     type="text"
                     className="form-control"
