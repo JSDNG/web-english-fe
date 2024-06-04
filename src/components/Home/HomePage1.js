@@ -10,6 +10,10 @@ const HomePage1 = (props) => {
                 <div>
                     <GetSet />
                 </div>
+
+                <div>
+                    <GetClass />
+                </div>
                 <div>
                     <span className="title">Hãy thử các tính năng cập nhật mới</span>
                     <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -41,9 +45,6 @@ const HomePage1 = (props) => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <GetClass />
                 </div>
             </div>
         </div>

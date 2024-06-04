@@ -69,7 +69,9 @@ const getAllFolder = () => {
 const getDataFolder = (id) => {
     return axios.get(`/api/v1/folder/${id}`);
 };
-
+const getFolderWithPage = (page, limit) => {
+    return axios.get(`/api/v1/folder?page=${page}&limit=${limit}`);
+};
 //Class
 const getAllClass = () => {
     return axios.get("/api/v1/class");
@@ -101,6 +103,7 @@ export {
     putUpdateSet,
     getAllFolder,
     getDataFolder,
+    getFolderWithPage,
     getAllClass,
     getClassWithPage,
     getDataClass,

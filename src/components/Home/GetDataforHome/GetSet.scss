@@ -7,6 +7,9 @@
     }
     .set-home-custom {
         .set-navigate {
+            &:hover {
+                border-bottom: 3px solid #8846ec;
+            }
             cursor: pointer;
             .set-home-card {
                 padding: 10px 20px;

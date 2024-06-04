@@ -2,18 +2,30 @@
     padding-top: 30px;
     display: grid;
     gap: 10px;
+
     .title {
         font-size: 20px;
         font-weight: 600;
     }
     .class-home-custom {
         .class-navigate {
+            &:hover {
+                border-bottom: 3px solid #8846ec;
+            }
             cursor: pointer;
             .class-home-card {
                 padding: 10px 20px;
                 .class-home-a {
+                    display: flex;
+                    gap: 220px;
                     .class-home-a-title {
+                        padding-top: 10px;
                         font-weight: 500;
+                    }
+                    .image-class-custom {
+                        height: 70px;
+                        border-radius: 50%;
+                        object-fit: cover;
                     }
                 }
 
@@ -21,12 +33,7 @@
                     display: flex;
                     gap: 10px;
                     align-items: center;
-                    img {
-                        width: 30px;
-                        height: 30px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                    }
+
                     .name-text {
                         font-size: 12px;
                         font-weight: 500;

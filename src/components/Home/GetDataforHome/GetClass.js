@@ -36,13 +36,21 @@ const GetClass = (props) => {
                                 >
                                     <div className="class-home-card">
                                         <div className="class-home-a">
-                                            <span className="class-home-a-title">{item.className}</span>
+                                            <div>
+                                                <span className="class-home-a-title">{item.className}</span>
+                                            </div>
+                                            <div>
+                                                <img
+                                                    className="image-class-custom"
+                                                    src={`data:image/jpeg;base64,${item?.userId?.image}`}
+                                                />
+                                            </div>
                                         </div>
 
                                         <div className="class-home-c">
-                                            <img src={`data:image/jpeg;base64,${item?.userId?.image}`} />
-                                            <span className="name-text">Tạo bởi {item?.userId?.username}</span>
+                                            <span className="card-text-class-home">{item.member} thư mục</span>
                                             <span className="card-text-class-home">{item.member} thành viên</span>
+                                            <span className="name-text">Tạo bởi {item?.userId?.username}</span>
                                         </div>
                                     </div>
                                 </div>
