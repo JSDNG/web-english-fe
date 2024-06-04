@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllFolder } from "../../../services/apiService";
 const ModalAddFolder = (props) => {
-    const { showFolder, setShowFolder } = props;
-    const handleClose = () => setShowFolder(false);
+    const { showAddFolder, setShowAddFolder } = props;
+    const handleClose = () => setShowAddFolder(false);
     const [infoFolder, setInfoFolder] = useState("");
     const [arrFolder, setArrFolder] = useState([]);
     const navigate = useNavigate();
@@ -20,17 +20,17 @@ const ModalAddFolder = (props) => {
         }
     };
     const handleAddFolderNew = () => {
-        setShowFolder(false);
+        setShowAddFolder(false);
         //console.log(title, desc);
     };
     const handleAddOrDeleteFolder = () => {
-        setShowFolder(false);
+        setShowAddFolder(false);
         //console.log(title, desc);
     };
     return (
         <>
             <Modal
-                show={showFolder}
+                show={showAddFolder}
                 onHide={handleClose}
                 animation={false}
                 size="lg"
@@ -38,14 +38,14 @@ const ModalAddFolder = (props) => {
                 className="modal-add-user"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Mời thành viên</Modal.Title>
+                    <Modal.Title>Thêm thư mục</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="row g-3">
                         <div className="col-md-12">
-                            <Button variant="primary" onClick={() => handleAddFolderNew()}>
+                            {/* <Button variant="primary" onClick={() => handleAddFolderNew()}>
                                 Tạo thư mục mới
-                            </Button>
+                            </Button> */}
                             <div
                                 //key={`${index}-folder`}
                                 className="folder-content card"

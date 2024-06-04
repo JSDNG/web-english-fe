@@ -3,21 +3,20 @@ import Button from "react-bootstrap/Button";
 
 import Modal from "react-bootstrap/Modal";
 
-const ModalFolder = (props) => {
-    const { show, setShow } = props;
-    const handleClose = () => setShow(false);
+const ModalCreateClass = (props) => {
+    const { showClass, setShowClass } = props;
+    const handleClose = () => setShowClass(false);
 
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
 
-    const handleCreateFolder = () => {
-        setShow(false);
-        //console.log(title, desc);
+    const handleCreateClass = () => {
+        //setShowClass(false);
     };
     return (
         <>
             <Modal
-                show={show}
+                show={showClass}
                 onHide={handleClose}
                 animation={false}
                 size="lg"
@@ -25,7 +24,7 @@ const ModalFolder = (props) => {
                 className="modal-add-user"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Tạo thư mục mới</Modal.Title>
+                    <Modal.Title>Tạo lớp mới</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="row g-3">
@@ -50,7 +49,7 @@ const ModalFolder = (props) => {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => handleCreateFolder()}>
+                    <Button variant="primary" onClick={() => handleCreateClass()}>
                         Save Changes
                     </Button>
                 </Modal.Footer>
@@ -59,4 +58,4 @@ const ModalFolder = (props) => {
     );
 };
 
-export default ModalFolder;
+export default ModalCreateClass;

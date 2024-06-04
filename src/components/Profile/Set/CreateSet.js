@@ -5,9 +5,11 @@ import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
 import { postCreateNewSet } from "../../../services/apiService";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const CreateSet = (props) => {
     const [cardIndex, SetCardIndex] = useState(0);
     const [title, setTitle] = useState("");
+    const navigate = useNavigate();
     const [arrCard, setArrCard] = useState([
         {
             id: uuidv4(),
@@ -30,6 +32,7 @@ const CreateSet = (props) => {
         let res = await postCreateNewSet(data);
         if (res && res.EC === 0) {
             toast.success(res.EM);
+            navigate("/home");
         }
         if (res && +res.EC !== 0) {
             toast.error(res.EM);

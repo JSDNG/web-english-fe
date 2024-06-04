@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getDataFolder } from "../../../services/apiService";
-import ModalFolder from "./ModalFolder";
+import ModalAddSet from "./ModalAddSet";
 import "./DetailFolder.scss";
 const DetailFolder = (props) => {
     const params = useParams();
@@ -38,7 +38,7 @@ const DetailFolder = (props) => {
                     <button className="btn btn-light" onClick={() => setShow(true)}>
                         Thêm
                     </button>
-                    <ModalFolder show={show} setShow={setShow} />
+                    <ModalAddSet show={show} setShow={setShow} />
                     <button className="btn btn-light">Sửa</button>
                     <button className="btn btn-light">Xóa</button>
                 </div>

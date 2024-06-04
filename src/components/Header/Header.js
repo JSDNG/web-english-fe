@@ -9,12 +9,15 @@ import { logout } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { doLogout } from "../../redux/action/userAction";
 import { useState } from "react";
+import ModalCreateFolder from "./ModalCreateFolder";
+import ModalCreateClass from "./ModalCreateClass";
 const Header = (props) => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
     const account = useSelector((state) => state.user.account);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const [showFolder, setShowFolder] = useState(false);
+    const [showClass, setShowClass] = useState(false);
     const handleLogOut = async () => {
         let res = await logout(account.email, account.refresh_token);
         //console.log(res);
@@ -27,6 +30,7 @@ const Header = (props) => {
             toast.error(res.EM);
         }
     };
+
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -48,7 +52,7 @@ const Header = (props) => {
                                 <NavLink to="/" className="nav-link">
                                     Trang chủ
                                 </NavLink>
-                                <NavDropdown title="Sản phẩm" id="basic-nav-dropdown">
+                                <NavDropdown title="Bài test" id="basic-nav-dropdown">
                                     <NavDropdown.Item
                                         onClick={() => {
                                             navigate("/");
@@ -103,17 +107,22 @@ const Header = (props) => {
                                     </NavDropdown.Item>
                                 </NavDropdown>
 
-                                <NavLink to="/admin" className="nav-link">
+                                {/* <NavLink to="/admin" className="nav-link">
                                     Admin
                                 </NavLink>
                                 <NavLink to="/user" className="nav-link">
                                     User
-                                </NavLink>
+                                </NavLink> */}
                             </>
                         )}
                     </Nav>
                     <Form className="d-flex">
-                        <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+                        <Form.Control
+                            type="search"
+                            placeholder="Tìm kiếm thông tin học phần"
+                            className="me-2"
+                            aria-label="Search"
+                        />
                     </Form>
                     <Nav className="set-2">
                         {isAuthenticated === false ? (
@@ -145,20 +154,10 @@ const Header = (props) => {
                                     >
                                         Học phần
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item
-                                        onClick={() => {
-                                            navigate("/create-set");
-                                        }}
-                                    >
-                                        Thư mục
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item
-                                        onClick={() => {
-                                            navigate("/create-set");
-                                        }}
-                                    >
-                                        Lớp học
-                                    </NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => setShowFolder(true)}>Thư mục</NavDropdown.Item>
+                                    <ModalCreateFolder showFolder={showFolder} setShowFolder={setShowFolder} />
+                                    <NavDropdown.Item onClick={() => setShowClass(true)}>Lớp học</NavDropdown.Item>
+                                    <ModalCreateClass showClass={showClass} setShowClass={setShowClass} />
                                 </NavDropdown>
                                 <NavDropdown
                                     title={

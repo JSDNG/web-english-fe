@@ -10,7 +10,7 @@ import "./ManageDetailClass.scss";
 import SetFromClass from "./SetFromClass";
 const ManageDetailClass = (props) => {
     const [showMember, setShowMember] = useState(false);
-    const [showFolder, setShowFolder] = useState(false);
+    const [showAddFolder, setShowAddFolder] = useState(false);
     const location = useLocation();
 
     const params = useParams();
@@ -27,10 +27,10 @@ const ManageDetailClass = (props) => {
                         Thêm thành viên
                     </button>
                     <ModalAddMember showMember={showMember} setShowMember={setShowMember} />
-                    <button className="btn btn-light" onClick={() => setShowFolder(true)}>
+                    <button className="btn btn-light" onClick={() => setShowAddFolder(true)}>
                         Thêm thư mục
                     </button>
-                    <ModalAddFolder showFolder={showFolder} setShowFolder={setShowFolder} />
+                    <ModalAddFolder showAddFolder={showAddFolder} setShowAddFolder={setShowAddFolder} />
                 </div>
 
                 <div className="header-class-custom">
