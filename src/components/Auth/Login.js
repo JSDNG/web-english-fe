@@ -49,14 +49,15 @@ const Login = () => {
         }
 
         //api
-        let data = await postLogin(email, password);
-        if (data && data.EC === 0) {
+        let data = await postLogin({ email, password });
+        console.log(data);
+        if (data && data.ec === 200) {
             dispatch(doLogin(data));
-            toast.success(data.EM);
+            toast.success(data.em);
             navigate("/home");
         }
-        if (data && +data.EC !== 0) {
-            toast.error(data.EM);
+        if (data && +data.ec !== 200) {
+            toast.error(data.em);
         }
     };
 

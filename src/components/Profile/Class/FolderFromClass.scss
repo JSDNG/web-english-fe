@@ -3,20 +3,23 @@
     flex-direction: column;
     gap: 15px;
     .folder-content-class {
-        padding: 10px 20px;
+        padding: 15px 20px;
         cursor: pointer;
         .folder-header-text-class {
         }
         .folder-body-content-class {
-        }
-        .folder-footer-content-class {
-            padding-top: 10px;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            padding-bottom: 10px;
             .img-by-user-create {
-                width: 25px;
-                height: 25px;
+                width: 20px;
+                height: 20px;
                 border-radius: 50%;
                 object-fit: cover;
             }
+        }
+        .folder-footer-content-class {
         }
     }
 }

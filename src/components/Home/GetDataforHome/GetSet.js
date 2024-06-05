@@ -2,17 +2,19 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getSetWithPage } from "../../../services/apiService";
 import "./GetSet.scss";
+import { store } from "../../../redux/store";
 const GetSet = (props) => {
     const [data, setData] = useState([]);
     const navigate = useNavigate();
+    const user_id = store?.getState()?.user?.account?.user_id;
     useEffect(() => {
         getData();
     }, []);
 
     const getData = async () => {
-        let res = await getSetWithPage(1, 3);
-        if (res && res.EC === 0) {
-            setData(res.DT.data);
+        let res = await getSetWithPage(user_id, 1, 3);
+        if (res && res.ec === 200) {
+            setData(res.dt.studySets);
         }
     };
 
@@ -39,11 +41,11 @@ const GetSet = (props) => {
                                             <span className="set-home-a-title">{item.studySetName}</span>
                                         </div>
                                         <div className="set-home-b">
-                                            <span className="card-text-set-home">{item.cards} thuật ngữ</span>
+                                            <span className="card-text-set-home">{item.totalCards} thuật ngữ</span>
                                         </div>
                                         <div className="set-home-c">
-                                            <img src={`data:image/jpeg;base64,${item?.userId?.image}`} />
-                                            <span className="name-text">{item?.userId?.username}</span>
+                                            <img src={`data:image/jpeg;base64,${item?.user?.image}`} />
+                                            <span className="name-text">{item?.user?.userName}</span>
                                         </div>
                                     </div>
                                 </div>

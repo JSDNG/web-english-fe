@@ -13,9 +13,10 @@ const Members = (props) => {
     }, [id]);
     const getData = async () => {
         let res = await getAllMember(id);
-        if (res && res.EC === 0) {
-            setMembers(res.DT);
+        if (res && res.ec === 200) {
+            setMembers(res.dt);
         }
+        console.log(members);
     };
     const hanldeDeleteMember = () => {
         alert("me");
@@ -35,16 +36,15 @@ const Members = (props) => {
                                 <div className="member-header-text-class">
                                     <img
                                         className="img-by-member-class"
-                                        src={`data:image/jpeg;base64,${item?.Users?.image}`}
+                                        src={`data:image/jpeg;base64,${item?.member?.image}`}
                                     />
                                 </div>
                                 <div className="member-body-content-class">
-                                    <div>
-                                        <span className="name-text-group">{item?.Users?.groupId?.name}</span>
-                                    </div>
-                                    <div>
-                                        <span className="name-text">{item?.Users?.username}</span>
-                                    </div>
+                                    {/* <div>
+                                        <span className="name-text-group">{item?.user?.groupId?.name}</span>
+                                    </div> */}
+
+                                    <span className="name-text">{item?.member?.userName}</span>
                                 </div>
                                 <button className="btn btn-light" onClick={() => hanldeDeleteMember()}>
                                     Xóa

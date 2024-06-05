@@ -7,11 +7,11 @@ const postCreacteNewUser = (email, password, username, role, image) => {
     data.append("username", username);
     data.append("role", role);
     data.append("userImage", image);
-    return axios.post("/api/v1/participant", data);
+    return axios.post("/api/participant", data);
 };
 
 const getAllUsers = () => {
-    return axios.get("/api/v1/participant/all");
+    return axios.get("/api/participant/all");
 };
 
 const putUpdateUser = (id, username, role, image) => {
@@ -21,70 +21,86 @@ const putUpdateUser = (id, username, role, image) => {
     data.append("username", username);
     data.append("role", role);
     data.append("userImage", image);
-    return axios.put("/api/v1/participant", data);
+    return axios.put("/api/participant", data);
 };
 const deleteUser = (id) => {
-    return axios.delete("/api/v1/participant", { data: { id } });
+    return axios.delete("/api/participant", { data: { id } });
 };
 const getUserWithPage = (page, limit) => {
-    return axios.get(`/api/v1/participant?page=${page}&limit=${limit}`);
+    return axios.get(`/api/participant?page=${page}&limit=${limit}`);
 };
-const postLogin = (email, password) => {
-    return axios.post("/api/v1/login", { email, password });
+const postLogin = (data) => {
+    return axios.post("/api/account/login", { ...data });
 };
-const postRegister = (email, password, username, groupId) => {
-    return axios.post("/api/v1/register", { email, password, username, groupId });
+const postRegister = (data) => {
+    return axios.post("/api/account", { ...data });
 };
 const logout = (email, refresh_token) => {
-    return axios.post("/api/v1/logout", { email, refresh_token });
+    return axios.post("/api/logout", { email, refresh_token });
+};
+const putChangePassWord = (data) => {
+    return axios.put("/api/account", { ...data });
+};
+const putChangeUser = (data) => {
+    return axios.put("/api/user", { ...data });
 };
 const getQuizByUser = () => {
-    return axios.get("/api/v1/quiz-by-participant");
+    return axios.get("/api/quiz-by-participant");
 };
 const getDataQuiz = (id) => {
-    return axios.get(`/api/v1/questions-by-quiz?quizId=${id}`);
+    return axios.get(`/api/questions-by-quiz?quizId=${id}`);
 };
 
 //Set
-const getAllSet = () => {
-    return axios.get("/api/v1/studyset");
+const getAllSet = (id) => {
+    return axios.get(`/api/study-set/user/${id}`);
 };
-const getSetWithPage = (page, limit) => {
-    return axios.get(`/api/v1/studyset?page=${page}&limit=${limit}`);
+const getSetWithPage = (id, page, limit) => {
+    return axios.get(`/api/study-set/user/${id}/?page=${page}&limit=${limit}`);
 };
 const getDataSet = (id) => {
-    return axios.get(`/api/v1/studyset/${id}`);
+    return axios.get(`/api/study-set/${id}`);
 };
 const postCreateNewSet = (data) => {
     console.log({ ...data });
-    return axios.post(`/api/v1/studyset`, { ...data });
+    return axios.post(`/api/study-set`, { ...data });
 };
 const putUpdateSet = (data) => {
-    return axios.put(`/api/v1/studyset`, { ...data });
+    return axios.put(`/api/study-set`, { ...data });
 };
 //Folder
 const getAllFolder = () => {
-    return axios.get("/api/v1/folder");
+    return axios.get("/api/folder");
 };
 const getDataFolder = (id) => {
-    return axios.get(`/api/v1/folder/${id}`);
+    return axios.get(`/api/folder/${id}`);
+};
+const getStudySetByFolder = (id) => {
+    return axios.get(`/api/study-set/folder/${id}`);
 };
 const getFolderWithPage = (page, limit) => {
-    return axios.get(`/api/v1/folder?page=${page}&limit=${limit}`);
+    return axios.get(`/api/folder?page=${page}&limit=${limit}`);
+};
+const postCreateNewFolder = (data) => {
+    return axios.post(`/api/folder`, { ...data });
 };
 //Class
-const getAllClass = () => {
-    return axios.get("/api/v1/class");
+const getAllClass = (id) => {
+    return axios.get(`/api/class/user-joined/${id}`);
 };
-const getClassWithPage = (page, limit) => {
-    return axios.get(`/api/v1/class?page=${page}&limit=${limit}`);
+const getClassWithPage = (id, page, limit) => {
+    return axios.get(`/api/class/user-joined/${id}/?page=${page}&limit=${limit}`);
 };
 const getDataClass = (id) => {
-    return axios.get(`/api/v1/class/${id}`);
+    return axios.get(`/api/folder/class/${id}`);
 };
 const getAllMember = (id) => {
-    return axios.get(`/api/v1/class/members/${id}`);
+    return axios.get(`/api/member/class/${id}`);
 };
+const postCreateNewClass = (data) => {
+    return axios.post(`/api/class`, { ...data });
+};
+
 export {
     postCreacteNewUser,
     getAllUsers,
@@ -94,6 +110,8 @@ export {
     postLogin,
     postRegister,
     logout,
+    putChangePassWord,
+    putChangeUser,
     getQuizByUser,
     getDataQuiz,
     getAllSet,
@@ -103,9 +121,12 @@ export {
     putUpdateSet,
     getAllFolder,
     getDataFolder,
+    getStudySetByFolder,
     getFolderWithPage,
+    postCreateNewFolder,
     getAllClass,
     getClassWithPage,
     getDataClass,
     getAllMember,
+    postCreateNewClass,
 };

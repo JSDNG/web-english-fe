@@ -20,6 +20,14 @@ const CreateSet = (props) => {
 
     const userId = useSelector((state) => state.user.account.user_id);
     const handleSubmit = async (event) => {
+        if (!title) {
+            toast.error("invalid title");
+            return;
+        }
+        // let arrCardClone = _.cloneDeep(arrCard);
+        // arrCardClone = arrCardClone.filter((item) => item.term !== "" && item.definition !== "");
+        // setArrCard(arrCardClone);
+        // console.log(arrCard);
         let data = {
             studySetName: title,
             userId: userId,
@@ -30,12 +38,12 @@ const CreateSet = (props) => {
         });
 
         let res = await postCreateNewSet(data);
-        if (res && res.EC === 0) {
-            toast.success(res.EM);
+        if (res && res.ec === 201) {
+            toast.success(res.em);
             navigate("/home");
         }
-        if (res && +res.EC !== 0) {
-            toast.error(res.EM);
+        if (res && +res.ec !== 201) {
+            toast.error(res.em);
         }
     };
     const handleAddDeleteCard = (type, id) => {

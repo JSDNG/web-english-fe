@@ -11,8 +11,8 @@ const ListFolder = (props) => {
 
     const getData = async () => {
         let res = await getAllFolder();
-        if (res && res.EC === 0) {
-            setArrFolder(res.DT);
+        if (res && res.ec === 200) {
+            setArrFolder(res.dt);
         }
     };
     return (
@@ -31,7 +31,7 @@ const ListFolder = (props) => {
                                 onClick={() => navigate(`/folders/${item.id}`)}
                             >
                                 <div className="folder-header-text">
-                                    <span>{item.studySetCount} học phần</span>
+                                    <span>{item?.studySetCount} học phần</span>
                                 </div>
                                 <div className="folder-body-content">
                                     <p className="folder-body-text">{item.folderName}</p>

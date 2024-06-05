@@ -19,16 +19,19 @@ const Header = (props) => {
     const [showFolder, setShowFolder] = useState(false);
     const [showClass, setShowClass] = useState(false);
     const handleLogOut = async () => {
-        let res = await logout(account.email, account.refresh_token);
+        dispatch(doLogout());
+        toast.success("Logout successful!");
+        navigate("/");
+        //let res = await logout(account.email, account.refresh_token);
         //console.log(res);
-        if (res && res.EC === 0) {
-            //clear redux
-            dispatch(doLogout());
-            toast.success(res.EM);
-            navigate("/");
-        } else {
-            toast.error(res.EM);
-        }
+        // if (res && res.EC === 0) {
+        //     //clear redux
+        //     dispatch(doLogout());
+        //     toast.success(res.EM);
+        //     navigate("/");
+        // } else {
+        //     toast.error(res.EM);
+        // }
     };
 
     return (
@@ -162,24 +165,30 @@ const Header = (props) => {
                                 <NavDropdown
                                     title={
                                         <img
+                                            className="image-custom-header"
                                             src={`data:image/png;base64, ${account.image}`}
                                             alt="Cài đặt chung"
-                                            style={{ width: "30px", height: "30px" }}
                                         />
                                     }
                                     id="basic-nav-dropdown"
                                 >
-                                    <NavDropdown.Item> {account.username}</NavDropdown.Item>
+                                    <NavDropdown.Item
+                                        onClick={() => {
+                                            navigate("/settings");
+                                        }}
+                                    >
+                                        {" "}
+                                        {account.username}
+                                    </NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item
                                         onClick={() => {
-                                            navigate("/profile");
+                                            navigate("/profile/sets");
                                         }}
                                     >
                                         Hồ sơ
                                     </NavDropdown.Item>
                                     <NavDropdown.Item>Ngôn ngữ</NavDropdown.Item>
-                                    <NavDropdown.Item>Cài đặt</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item
                                         onClick={() => {

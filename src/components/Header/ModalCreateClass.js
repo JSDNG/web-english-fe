@@ -1,17 +1,33 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-
+import { postCreateNewClass } from "../../services/apiService";
 import Modal from "react-bootstrap/Modal";
-
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 const ModalCreateClass = (props) => {
     const { showClass, setShowClass } = props;
     const handleClose = () => setShowClass(false);
+    const userId = useSelector((state) => state.user.account.user_id);
+    const [className, setClassName] = useState("");
+    const [description, setDescription] = useState("");
 
-    const [title, setTitle] = useState("");
-    const [desc, setDesc] = useState("");
-
-    const handleCreateClass = () => {
-        //setShowClass(false);
+    const handleCreateClass = async () => {
+        if (!className) {
+            toast.error("Tên lớp trống");
+            return;
+        }
+        if (!description) {
+            toast.error("Tên mô tả trống");
+            return;
+        }
+        let res = await postCreateNewClass({ className, description, userId });
+        if (res && res.ec === 201) {
+            toast.success(res.em);
+            setShowClass(false);
+        }
+        if (res && res.ec !== 201) {
+            toast.error(res.em);
+        }
     };
     return (
         <>
@@ -33,8 +49,8 @@ const ModalCreateClass = (props) => {
                             <input
                                 type="text"
                                 className="form-control"
-                                value={title}
-                                onChange={(event) => setTitle(event.target.value)}
+                                value={className}
+                                onChange={(event) => setClassName(event.target.value)}
                             />
                         </div>
                         <div className="col-md-12">
@@ -42,15 +58,15 @@ const ModalCreateClass = (props) => {
                             <input
                                 type="text"
                                 className="form-control"
-                                value={desc}
-                                onChange={(event) => setDesc(event.target.value)}
+                                value={description}
+                                onChange={(event) => setDescription(event.target.value)}
                             />
                         </div>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={() => handleCreateClass()}>
-                        Save Changes
+                        Tạo lớp
                     </Button>
                 </Modal.Footer>
             </Modal>

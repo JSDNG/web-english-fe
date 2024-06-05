@@ -8,7 +8,7 @@ import ManageUser from "./components/Admin/Content/ManageUser";
 import Profile from "./components/Profile/Profile";
 import ListClass from "./components/Profile/Class/ListClass";
 import ManageDetailClass from "./components/Profile/Class/ManageDetailClass";
-import SetFromClass from "./components/Profile/Class/SetFromClass";
+import FolderFromClass from "./components/Profile/Class/FolderFromClass";
 import Members from "./components/Profile/Class/Members";
 import ListSet from "./components/Profile/Set/ListSet";
 import DetailSet from "./components/Profile/Set/DetailSet";
@@ -23,6 +23,8 @@ import Register from "./components/Auth/Register";
 import HomePage1 from "./components/Home/HomePage1";
 import CreateSet from "./components/Profile/Set/CreateSet";
 import EditSet from "./components/Profile/Set/EditSet";
+import Setting from "./components/Setting/Setting";
+
 import ListQuiz from "./components/User/ListQuiz";
 import DetailQuiz from "./components/User/DetailQuiz";
 
@@ -41,12 +43,13 @@ const Layout = (props) => {
                         <Route path="classes" element={<ListClass />} />
                     </Route>
                     <Route path="/classes/:id" element={<ManageDetailClass />}>
-                        <Route index element={<SetFromClass />} />
+                        <Route index element={<FolderFromClass />} />
                         <Route path="members" element={<Members />} />
                     </Route>
                     <Route path="/folders/:id" element={<DetailFolder />} />
                     <Route path="/create-set" element={<CreateSet />} />
                     <Route path="/edit-set/:id" element={<EditSet />} />
+                    <Route path="/settings" element={<Setting />} />
                 </Route>
 
                 <Route path="/quiz/:id" element={<DetailQuiz />} />

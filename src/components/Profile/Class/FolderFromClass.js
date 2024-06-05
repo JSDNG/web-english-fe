@@ -3,52 +3,61 @@ import ModalAddMember from "./ModalAddMember";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { getDataClass } from "../../../services/apiService";
-import "./SetFromClass.scss";
-const SetFromClass = (props) => {
+import "./FolderFromClass.scss";
+const FolderFromClass = (props) => {
     const [show, folderShow] = useState(false);
     const params = useParams();
     const id = params.id;
-    const [detailClass, folderDetailClass] = useState([]);
+    const [folders, setFolders] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
         getData();
     }, [id]);
     const getData = async () => {
         let res = await getDataClass(id);
-        if (res && res.EC === 0) {
-            folderDetailClass([res.DT]);
-            //console.log(detailClass[0]?.Studyfolders);
+        if (res && res.ec === 200) {
+            setFolders(res.dt.folders);
+            //console.log(folders[0]?.Studyfolders);
         }
     };
+
     return (
         <>
             <div className="list-folder-class ">
-                {detailClass[0]?.Folders &&
-                    detailClass[0]?.Folders.length > 0 &&
-                    detailClass[0]?.Folders.map((item, index) => {
+                {folders &&
+                    folders.length > 0 &&
+                    folders.map((item, index) => {
                         return (
                             <div
                                 key={`${index}-folder`}
                                 className="folder-content-class card col-md-9"
                                 onClick={() => navigate(`/folders/${item.id}`)}
                             >
+                                <div className="folder-body-content-class">
+                                    <span> học phần</span>
+                                    <span>&#124;</span>
+                                    <img
+                                        className="img-by-user-create"
+                                        src={`data:image/jpeg;base64,${item?.user?.image}`}
+                                    />
+                                    <span>&#124;</span>
+                                    <span className="name-text">{item?.user?.userName}</span>
+                                </div>
                                 <div className="folder-header-text-class">
                                     <span className="class-body-text"> Thư mục: {item.folderName}</span>
                                 </div>
-                                <div className="folder-body-content-class">
-                                    <span>Tổng số thuật ngữ</span>
-                                </div>
-                                <div className="folder-footer-content-class">
+
+                                {/* <div className="folder-footer-content-class">
                                     <img
                                         className="img-by-user-create"
-                                        src={`data:image/jpeg;base64,${detailClass[0]?.userId?.image}`}
+                                        src={`data:image/jpeg;base64,${item?.user?.image}`}
                                     />
-                                    <span className="name-text">{detailClass[0]?.userId?.username}</span>
-                                </div>
+                                    <span className="name-text">{item?.user?.userName}</span>
+                                </div> */}
                             </div>
                         );
                     })}
-                {detailClass[0]?.Folders && detailClass[0]?.Folders.length === 0 && <div> No Folder</div>}
+                {folders && folders.length === 0 && <div> Không có thư mục</div>}
             </div>
 
             {/* <div className="header-class">
@@ -68,4 +77,4 @@ const SetFromClass = (props) => {
     );
 };
 
-export default SetFromClass;
+export default FolderFromClass;

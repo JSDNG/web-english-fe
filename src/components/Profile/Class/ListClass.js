@@ -3,17 +3,19 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { getAllClass } from "../../../services/apiService";
 import "./ListClass.scss";
+import { store } from "../../../redux/store";
 const ListClass = (props) => {
     const [arrClass, setArrClass] = useState([]);
     const navigate = useNavigate();
+    const user_id = store?.getState()?.user?.account?.user_id;
     useEffect(() => {
         getData();
     }, []);
 
     const getData = async () => {
-        let res = await getAllClass();
-        if (res && res.EC === 0) {
-            setArrClass(res.DT);
+        let res = await getAllClass(user_id);
+        if (res && res.ec === 200) {
+            setArrClass(res.dt.classes);
         }
     };
     return (
@@ -22,7 +24,7 @@ const ListClass = (props) => {
                 <div className="1"> Gần đây</div>
                 <div className="search">
                     <Form className="d-flex">
-                        <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+                        <Form.Control type="search" placeholder="Tìm kiếm lớp" className="me-2" aria-label="Search" />
                     </Form>
                 </div>
             </div>
@@ -43,9 +45,11 @@ const ListClass = (props) => {
                                 }
                             >
                                 <div className="card-header-text-class">
-                                    <span className="text">{item.member} thành viên </span>
+                                    <span className="text">{item.numOfFolder} thư mục </span>
                                     <span className="t">&#124;</span>
-                                    <span className="text"> Tạo bởi {item?.userId?.username}</span>
+                                    <span className="text">{item.numOfMember} thành viên </span>
+                                    <span className="t">&#124;</span>
+                                    <span className="text"> Tạo bởi {item?.user?.userName}</span>
                                 </div>
                                 <div className="card-body-content-class">
                                     <span className="card-body-text-class">{item.className}</span>

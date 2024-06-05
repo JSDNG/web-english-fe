@@ -13,7 +13,7 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [group, setGroup] = useState("TEACHER");
+    const [groupId, setgroupId] = useState(1);
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
@@ -44,19 +44,19 @@ const Register = () => {
             toast.error("invalid username");
             return;
         }
-        // if (!group) {
-        //     toast.error("invalid group");
+        // if (!groupId) {
+        //     toast.error("invalid groupId");
         //     return;
         // }
         //api
-        let res = await postRegister(email, password, username, group);
-
-        if (res && +res.EC === 0) {
-            toast.success(res.EM);
+        let res = await postRegister({ email, password, username, groupId });
+        console.log(res);
+        if (res && +res.ec === 200) {
+            toast.success(res.em);
             navigate("/login");
         }
-        if (res && +res.EC !== 0) {
-            toast.error(res.EM);
+        if (res && +res.ec !== 200) {
+            toast.error(res.em);
         }
     };
 
@@ -130,7 +130,11 @@ const Register = () => {
                 </div>
                 <div>
                     <label className="form-label">Group</label>
-                    <select className="form-select" onChange={(event) => setGroup(event.target.value)} value={group}>
+                    <select
+                        className="form-select"
+                        onChange={(event) => setgroupId(event.target.value)}
+                        value={groupId}
+                    >
                         <option value="1">TEACHER</option>
                         <option value="2">STUDENT</option>
                     </select>

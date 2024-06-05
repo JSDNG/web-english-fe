@@ -3,17 +3,19 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { getAllSet } from "../../../services/apiService";
 import "./ListSet.scss";
+import { store } from "../../../redux/store";
 const ListStudySet = (props) => {
     const [arrSet, setArrSet] = useState([]);
     const navigate = useNavigate();
+    const user_id = store?.getState()?.user?.account?.user_id;
     useEffect(() => {
         getData();
     }, []);
 
     const getData = async () => {
-        let res = await getAllSet();
-        if (res && res.EC === 0) {
-            setArrSet(res.DT);
+        let res = await getAllSet(user_id);
+        if (res && res.ec === 200) {
+            setArrSet(res.dt.studySets);
         }
     };
     return (
@@ -22,7 +24,7 @@ const ListStudySet = (props) => {
                 <div className="1"> Gần đây</div>
                 <div className="search">
                     <Form className="d-flex">
-                        <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+                        <Form.Control type="search" placeholder="Tìm kiếm" className="me-2" aria-label="Search" />
                     </Form>
                 </div>
             </div>
@@ -38,7 +40,7 @@ const ListStudySet = (props) => {
                             >
                                 <div className="card-header-text">
                                     <p>
-                                        {item.cards} &#124; {item.userId.username} &#124;
+                                        {item.totalCards} &#124; {item.user.userName} &#124;
                                     </p>
                                 </div>
                                 <div className="card-body-content">
@@ -47,7 +49,7 @@ const ListStudySet = (props) => {
                             </div>
                         );
                     })}
-                {arrSet && arrSet.length === 0 && <div> No Study Set</div>}
+                {arrSet && arrSet.length === 0 && <div> Không có học phần</div>}
             </div>
         </>
     );

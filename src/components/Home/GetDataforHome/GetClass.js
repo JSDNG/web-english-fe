@@ -2,17 +2,19 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getClassWithPage } from "../../../services/apiService";
 import "./GetClass.scss";
+import { store } from "../../../redux/store";
 const GetClass = (props) => {
     const [data, classData] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
         getData();
     }, []);
-
+    const user_id = store?.getState()?.user?.account?.user_id;
     const getData = async () => {
-        let res = await getClassWithPage(1, 3);
-        if (res && res.EC === 0) {
-            classData(res.DT.data);
+        let res = await getClassWithPage(user_id, 1, 3);
+
+        if (res && res.ec === 200) {
+            classData(res.dt.classes);
         }
     };
 
@@ -42,15 +44,15 @@ const GetClass = (props) => {
                                             <div>
                                                 <img
                                                     className="image-class-custom"
-                                                    src={`data:image/jpeg;base64,${item?.userId?.image}`}
+                                                    src={`data:image/jpeg;base64,${item?.user?.image}`}
                                                 />
                                             </div>
                                         </div>
 
                                         <div className="class-home-c">
-                                            <span className="card-text-class-home">{item.member} thư mục</span>
-                                            <span className="card-text-class-home">{item.member} thành viên</span>
-                                            <span className="name-text">Tạo bởi {item?.userId?.username}</span>
+                                            <span className="card-text-class-home">{item.numOfFolder} thư mục</span>
+                                            <span className="card-text-class-home">{item.numOfMember} thành viên</span>
+                                            <span className="name-text">Tạo bởi {item?.user?.userName}</span>
                                         </div>
                                     </div>
                                 </div>

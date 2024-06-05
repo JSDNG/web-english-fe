@@ -7,7 +7,7 @@ import HeaderClass from "./HeaderClass";
 import { getDataClass } from "../../../services/apiService";
 import { Outlet } from "react-router-dom";
 import "./ManageDetailClass.scss";
-import SetFromClass from "./SetFromClass";
+import FolderFromClass from "./FolderFromClass";
 const ManageDetailClass = (props) => {
     const [showMember, setShowMember] = useState(false);
     const [showAddFolder, setShowAddFolder] = useState(false);

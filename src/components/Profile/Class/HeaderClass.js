@@ -12,7 +12,7 @@ const HeaderClass = (props) => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <NavLink to={`/classes/${id}`} className="nav-link">
-                        Các học phần
+                        Các thư mục
                     </NavLink>
                     <NavLink to={`/classes/${id}/members`} className="nav-link">
                         Thành viên

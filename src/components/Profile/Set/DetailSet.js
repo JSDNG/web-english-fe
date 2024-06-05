@@ -14,8 +14,8 @@ const DetailSet = (props) => {
     }, [id]);
     const getData = async () => {
         let res = await getDataSet(id);
-        if (res && res.EC === 0) {
-            setDetailSet([res.DT]);
+        if (res && res.ec === 200) {
+            setDetailSet([res.dt]);
         }
     };
     const handlePrev = () => {
@@ -23,7 +23,7 @@ const DetailSet = (props) => {
         SetCardIndex(cardIndex - 1);
     };
     const handleNext = () => {
-        if (detailSet[0]?.Cards && detailSet[0]?.Cards?.length > cardIndex + 1) SetCardIndex(cardIndex + 1);
+        if (detailSet[0]?.cards && detailSet[0]?.cards?.length > cardIndex + 1) SetCardIndex(cardIndex + 1);
     };
     return (
         <div key={`${detailSet[0]?.id}-set`} className="set-container ">
@@ -39,7 +39,7 @@ const DetailSet = (props) => {
                     <DetailCard
                         index={cardIndex}
                         card={
-                            detailSet[0]?.Cards && detailSet[0]?.Cards.length > 0 ? detailSet[0]?.Cards[cardIndex] : []
+                            detailSet[0]?.cards && detailSet[0]?.cards.length > 0 ? detailSet[0]?.cards[cardIndex] : []
                         }
                     />
                 </div>
@@ -55,16 +55,16 @@ const DetailSet = (props) => {
             <hr />
             <div className="footer-card">
                 <div className="info-text">
-                    <img src={`data:image/jpeg;base64,${detailSet[0]?.userId?.image}`} />
-                    <span className="name-text">{detailSet[0]?.userId?.username}</span>
+                    <img src={`data:image/jpeg;base64,${detailSet[0]?.user?.image}`} />
+                    <span className="name-text">{detailSet[0]?.user?.userName}</span>
                 </div>
                 <div className="title-text-cards">
-                    <span>Thuật ngữ trong phần học này ({detailSet[0]?.Cards?.length}) </span>
+                    <span>Thuật ngữ trong phần học này ({detailSet[0]?.cards?.length}) </span>
                 </div>
                 <div className="list-card">
-                    {detailSet[0]?.Cards &&
-                        detailSet[0]?.Cards.length > 0 &&
-                        detailSet[0]?.Cards.map((item, index) => {
+                    {detailSet[0]?.cards &&
+                        detailSet[0]?.cards.length > 0 &&
+                        detailSet[0]?.cards.map((item, index) => {
                             return (
                                 <div key={`${index}-card`} className="card">
                                     <div className="card-body">

@@ -1,0 +1,51 @@
+.setting-container-custom {
+    padding: 40px 350px;
+    .header-setting {
+        font-size: 45px;
+        font-weight: 700;
+        padding-bottom: 10px;
+    }
+    .body-content-setting {
+        .customs-header-ul {
+            padding: 20px 0 10px 0;
+            font-size: 20px;
+        }
+        .setting-info-custom {
+            .control-setting-image-custom {
+                display: flex;
+                gap: 30px;
+                align-items: center;
+
+                .setting-image-custom-main {
+                    width: 100px;
+                    border-radius: 50%;
+                }
+                .control-setting-list-image-custom {
+                    .control-setting-list-image-custom-1 {
+                        display: flex;
+                        gap: 10px;
+                        padding: 5px;
+                        .setting-image-custom {
+                            width: 40px;
+                            border-radius: 50%;
+                            cursor: pointer;
+                        }
+
+                        svg {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            border: 2px solid #d3d7d8;
+
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        .setting-interface-custom {
+        }
+        .setting-notif-custom {
+        }
+    }
+}
