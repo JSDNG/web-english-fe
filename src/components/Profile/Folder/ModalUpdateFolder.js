@@ -5,8 +5,8 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-const ModalAddSet = (props) => {
-    const { show, setShow, folderId } = props;
+const ModalUpdateFolder = (props) => {
+    const { show, setShow, folder } = props;
     const handleClose = () => setShow(false);
     const navigate = useNavigate();
     useEffect(() => {
@@ -59,7 +59,7 @@ const ModalAddSet = (props) => {
                                 return (
                                     <div
                                         key={`${index}-set`}
-                                        className="set-content-folder card p-2 px-2 mb-3"
+                                        className="set-content-folder card p-2 px-2"
                                         //onClick={() => navigate(`/flash-cards/${item?.id}`)}
                                     >
                                         <div className="set-body-content-folder d-flex align-items-center">
@@ -81,4 +81,4 @@ const ModalAddSet = (props) => {
     );
 };
 
-export default ModalAddSet;
+export default ModalUpdateFolder;

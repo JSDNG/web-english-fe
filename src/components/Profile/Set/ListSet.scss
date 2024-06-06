@@ -20,6 +20,12 @@
         .card-header-text {
             display: flex;
             gap: 10px;
+            img {
+                width: 20px;
+
+                border-radius: 50%;
+                object-fit: cover;
+            }
         }
         .card-body-content {
             //display: flex;

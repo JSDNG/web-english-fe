@@ -20,7 +20,7 @@ const ListStudySet = (props) => {
     };
     return (
         <>
-            <div className="set-header container">
+            <div className="set-header ">
                 <div className="1"> Gần đây</div>
                 <div className="search">
                     <Form className="d-flex">
@@ -28,7 +28,7 @@ const ListStudySet = (props) => {
                     </Form>
                 </div>
             </div>
-            <div className="list-set container">
+            <div className="list-set">
                 {arrSet &&
                     arrSet.length > 0 &&
                     arrSet.map((item, index) => {
@@ -39,9 +39,11 @@ const ListStudySet = (props) => {
                                 onClick={() => navigate(`/flash-cards/${item.id}`)}
                             >
                                 <div className="card-header-text">
-                                    <p>
-                                        {item.totalCards} &#124; {item.user.userName} &#124;
-                                    </p>
+                                    <span>{item.totalCards} học phần &#124;</span>
+                                    <span>
+                                        <img src={`data:image/jpeg;base64,${item.user.image}`} />
+                                    </span>
+                                    <span>{item.user.userName} </span>
                                 </div>
                                 <div className="card-body-content">
                                     <p className="card-body-text">{item.studySetName}</p>

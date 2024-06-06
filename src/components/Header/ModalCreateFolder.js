@@ -19,7 +19,7 @@ const ModalCreateFolder = (props) => {
         let classId = 0;
         let res = await postCreateNewFolder({ folderName, userId, classId });
         if (res && res.ec === 201) {
-            toast.success(res.em);
+            toast.success("Created folder successful!");
             setShowFolder(false);
         }
         if (res && res.ec !== 201) {

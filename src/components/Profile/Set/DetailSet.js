@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getDataSet } from "../../../services/apiService";
+import { getDataSet, deleteSet } from "../../../services/apiService";
 import DetailCard from "./DetailCard";
 import "./DetailSet.scss";
 const DetailSet = (props) => {
@@ -16,6 +16,12 @@ const DetailSet = (props) => {
         let res = await getDataSet(id);
         if (res && res.ec === 200) {
             setDetailSet([res.dt]);
+        }
+    };
+    const handleDeleteSet = async () => {
+        let res = await deleteSet(id);
+        if (res && res.ec === 200) {
+            navigate("/profile/sets");
         }
     };
     const handlePrev = () => {
@@ -57,7 +63,11 @@ const DetailSet = (props) => {
                 <div className="info-text">
                     <img src={`data:image/jpeg;base64,${detailSet[0]?.user?.image}`} />
                     <span className="name-text">{detailSet[0]?.user?.userName}</span>
+                    <button className="btn btn-light" onClick={() => handleDeleteSet()}>
+                        Xóa
+                    </button>
                 </div>
+
                 <div className="title-text-cards">
                     <span>Thuật ngữ trong phần học này ({detailSet[0]?.cards?.length}) </span>
                 </div>
@@ -67,10 +77,10 @@ const DetailSet = (props) => {
                         detailSet[0]?.cards.map((item, index) => {
                             return (
                                 <div key={`${index}-card`} className="card">
-                                    <div className="card-body">
+                                    <div className="card-body d-flex gap-5">
                                         <span> {item.term}</span>
                                         <span>&#124; {item.definition}</span>
-                                        <button className="btn btn-light"> update</button>
+                                        {/* <button className="btn btn-light ml-auto"> Chỉnh sửa</button> */}
                                     </div>
                                 </div>
                             );

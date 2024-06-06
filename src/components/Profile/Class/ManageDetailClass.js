@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import ModalAddMember from "./ModalAddMember";
-
+import NavDropdown from "react-bootstrap/NavDropdown";
 import ModalAddFolder from "./ModalAddFolder";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import HeaderClass from "./HeaderClass";
-import { getDataClass } from "../../../services/apiService";
+import { getDataClass, deleteClass } from "../../../services/apiService";
 import { Outlet } from "react-router-dom";
 import "./ManageDetailClass.scss";
 import FolderFromClass from "./FolderFromClass";
+import ModalUpdateClass from "./ModalUpdateClass";
+import { toast } from "react-toastify";
 const ManageDetailClass = (props) => {
     const [showMember, setShowMember] = useState(false);
     const [showAddFolder, setShowAddFolder] = useState(false);
@@ -16,21 +18,41 @@ const ManageDetailClass = (props) => {
     const params = useParams();
     const id = params.id;
     const navigate = useNavigate();
+    const handleUpdateClass = async () => {};
+    const hanldeDeleteClass = async () => {
+        let res = await deleteClass(id);
+        if (res && res.ec === 200) {
+            toast.success(res.em);
+            navigate("/profile/classes");
+        }
+    };
     return (
         <div className="detail-class-main">
             <div className="detail-class-header">
                 <div className="class-name">
-                    <span className="class-name-text">{location?.state?.data} tên lớp</span>
+                    <span className="class-name-text">Tên lớp {location?.state?.data} </span>
                 </div>
                 <div className="action-class">
-                    <button className="btn btn-light" onClick={() => setShowMember(true)}>
-                        Thêm thành viên
-                    </button>
-                    <ModalAddMember showMember={showMember} setShowMember={setShowMember} />
-                    <button className="btn btn-light" onClick={() => setShowAddFolder(true)}>
-                        Thêm thư mục
-                    </button>
-                    <ModalAddFolder showAddFolder={showAddFolder} setShowAddFolder={setShowAddFolder} />
+                    <div>
+                        <button className="btn btn-light" onClick={() => setShowAddFolder(true)}>
+                            Thêm thư mục
+                        </button>
+                        <ModalAddFolder showAddFolder={showAddFolder} setShowAddFolder={setShowAddFolder} />
+                    </div>
+                    <div>
+                        <button className="btn btn-light" onClick={() => setShowMember(true)}>
+                            Thêm thành viên
+                        </button>
+                        <ModalAddMember showMember={showMember} setShowMember={setShowMember} />
+                    </div>
+                    <div className="dropdown-class-custom">
+                        <button>
+                            <NavDropdown title="Cài đặt" id="basic-nav-dropdown">
+                                <NavDropdown.Item onClick={() => handleUpdateClass()}>Sửa</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => hanldeDeleteClass()}>Xóa</NavDropdown.Item>
+                            </NavDropdown>
+                        </button>
+                    </div>
                 </div>
 
                 <div className="header-class-custom">

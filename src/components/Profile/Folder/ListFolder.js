@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllFolder } from "../../../services/apiService";
+import { useDispatch, useSelector } from "react-redux";
 import "./ListFolder.scss";
 const ListFolder = (props) => {
     const [arrFolder, setArrFolder] = useState([]);
@@ -8,19 +9,19 @@ const ListFolder = (props) => {
     useEffect(() => {
         getData();
     }, []);
-
+    const id = useSelector((state) => state.user.account.user_id);
     const getData = async () => {
-        let res = await getAllFolder();
+        let res = await getAllFolder(id);
         if (res && res.ec === 200) {
-            setArrFolder(res.dt);
+            setArrFolder(res.dt.folders);
         }
     };
     return (
         <>
-            <div className="folder-header container">
+            <div className="folder-header ">
                 <button className="btn btn-light">Đã tạo</button>
             </div>
-            <div className="list-folder container">
+            <div className="list-folder ">
                 {arrFolder &&
                     arrFolder.length > 0 &&
                     arrFolder.map((item, index) => {
@@ -31,7 +32,7 @@ const ListFolder = (props) => {
                                 onClick={() => navigate(`/folders/${item.id}`)}
                             >
                                 <div className="folder-header-text">
-                                    <span>{item?.studySetCount} học phần</span>
+                                    <span>{item?.totalStudySets} học phần</span>
                                 </div>
                                 <div className="folder-body-content">
                                     <p className="folder-body-text">{item.folderName}</p>

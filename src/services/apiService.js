@@ -61,6 +61,9 @@ const getSetWithPage = (id, page, limit) => {
 const getDataSet = (id) => {
     return axios.get(`/api/study-set/${id}`);
 };
+const deleteSet = (id) => {
+    return axios.delete(`/api/study-set/${id}`);
+};
 const postCreateNewSet = (data) => {
     console.log({ ...data });
     return axios.post(`/api/study-set`, { ...data });
@@ -68,9 +71,15 @@ const postCreateNewSet = (data) => {
 const putUpdateSet = (data) => {
     return axios.put(`/api/study-set`, { ...data });
 };
+const deleteSetFromFolder = (id) => {
+    return axios.delete(`/api/folder-detail/${id}`);
+};
 //Folder
-const getAllFolder = () => {
-    return axios.get("/api/folder");
+const getSetNonFromFolder = (userId, folderId) => {
+    return axios.get(`/api/study-set/user-nfolder?userId=${userId}&folderId=${folderId}`);
+};
+const getAllFolder = (id) => {
+    return axios.get(`/api/folder/user/${id}`);
 };
 const getDataFolder = (id) => {
     return axios.get(`/api/folder/${id}`);
@@ -83,6 +92,13 @@ const getFolderWithPage = (page, limit) => {
 };
 const postCreateNewFolder = (data) => {
     return axios.post(`/api/folder`, { ...data });
+};
+const deleteFolder = (id) => {
+    return axios.delete(`/api/folder/${id}`);
+};
+//folder-detail
+const postFolderDetail = (data) => {
+    return axios.post(`/api/folder-detail`, { ...data });
 };
 //Class
 const getAllClass = (id) => {
@@ -100,7 +116,12 @@ const getAllMember = (id) => {
 const postCreateNewClass = (data) => {
     return axios.post(`/api/class`, { ...data });
 };
-
+const deleteClass = (id) => {
+    return axios.delete(`/api/class/${id}`);
+};
+const getFolderNonFromClass = (userId) => {
+    return axios.get(`/api/folder/user/${userId}/non-class`);
+};
 export {
     postCreacteNewUser,
     getAllUsers,
@@ -117,16 +138,23 @@ export {
     getAllSet,
     getSetWithPage,
     getDataSet,
+    deleteSet,
     postCreateNewSet,
     putUpdateSet,
+    deleteSetFromFolder,
+    getSetNonFromFolder,
     getAllFolder,
     getDataFolder,
     getStudySetByFolder,
     getFolderWithPage,
     postCreateNewFolder,
+    deleteFolder,
+    postFolderDetail,
     getAllClass,
     getClassWithPage,
     getDataClass,
     getAllMember,
     postCreateNewClass,
+    deleteClass,
+    getFolderNonFromClass,
 };

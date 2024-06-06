@@ -2,18 +2,19 @@
     padding: 40px 155px;
 
     .detail-class-header {
-        display: flex;
-        flex-direction: column;
-
-        gap: 30px;
         padding-bottom: 10px;
         .class-name {
+            padding-bottom: 30px;
             .class-name-text {
                 font-size: 30px;
                 font-weight: 700;
             }
         }
         .action-class {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-right: auto;
             button {
                 border-radius: 30px;
                 border-color: rgb(214, 212, 212);

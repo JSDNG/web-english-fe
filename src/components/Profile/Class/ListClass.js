@@ -19,12 +19,12 @@ const ListClass = (props) => {
         }
     };
     return (
-        <div className="list-class-main container">
+        <div className="list-class-main">
             <div className="class-header ">
                 <div className="1"> Gần đây</div>
                 <div className="search">
                     <Form className="d-flex">
-                        <Form.Control type="search" placeholder="Tìm kiếm lớp" className="me-2" aria-label="Search" />
+                        <Form.Control type="search" placeholder="Tìm kiếm lớp" className="" aria-label="Search" />
                     </Form>
                 </div>
             </div>

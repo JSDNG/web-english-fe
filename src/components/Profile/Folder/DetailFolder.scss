@@ -1,6 +1,6 @@
 .detail-folder-main {
-    padding: 40px 300px 20px 40px;
-    cursor: pointer;
+    padding: 40px 300px;
+
     .detail-folder-header {
         display: flex;
         align-items: center;
@@ -10,6 +10,8 @@
         .total-set {
         }
         .create-by-user {
+            display: flex;
+            gap: 5px;
             .img-by-user-create {
                 width: 25px;
                 height: 25px;
@@ -36,10 +38,16 @@
         }
     }
     .list-set-folder {
+        cursor: pointer;
         display: flex;
+        flex-direction: column;
         gap: 15px;
         .set-content-folder {
-            padding: 10px 20px;
+            display: flex;
+            gap: 700px;
+            flex-direction: row;
+            align-items: center;
+            padding: 15px 25px;
             .set-header-text-folder {
             }
             .set-body-content-folder {

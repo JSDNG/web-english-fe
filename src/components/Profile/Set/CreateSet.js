@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import "./CreateSet.scss";
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
-import { postCreateNewSet } from "../../../services/apiService";
+import { postCreateNewSet, postFolderDetail } from "../../../services/apiService";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const CreateSet = (props) => {
     const [cardIndex, SetCardIndex] = useState(0);
     const [title, setTitle] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
+
     const [arrCard, setArrCard] = useState([
         {
             id: uuidv4(),
@@ -21,13 +23,15 @@ const CreateSet = (props) => {
     const userId = useSelector((state) => state.user.account.user_id);
     const handleSubmit = async (event) => {
         if (!title) {
-            toast.error("invalid title");
+            toast.error("Vui lòng nhập tên học phần!");
             return;
         }
-        // let arrCardClone = _.cloneDeep(arrCard);
-        // arrCardClone = arrCardClone.filter((item) => item.term !== "" && item.definition !== "");
-        // setArrCard(arrCardClone);
-        // console.log(arrCard);
+        let arrCardClone = _.cloneDeep(arrCard);
+        arrCardClone = arrCardClone.filter((item) => item.term === "" || item.definition === "");
+        if (arrCardClone.length > 0) {
+            toast.error("Vui lòng nhập đầy đủ thông tin thẻ!");
+            return;
+        }
         let data = {
             studySetName: title,
             userId: userId,
@@ -39,8 +43,14 @@ const CreateSet = (props) => {
 
         let res = await postCreateNewSet(data);
         if (res && res.ec === 201) {
+            let folderId = location?.state?.data;
+            if (folderId > 0) {
+                let studySetId = res.dt.id;
+                await postFolderDetail({ folderId, studySetId });
+            }
+
             toast.success(res.em);
-            navigate("/home");
+            navigate(`/flash-cards/${res.dt.id}`);
         }
         if (res && +res.ec !== 201) {
             toast.error(res.em);
