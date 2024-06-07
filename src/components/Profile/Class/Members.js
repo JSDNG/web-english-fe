@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
-import { getAllMember } from "../../../services/apiService";
+import { toast } from "react-toastify";
+import { getAllMember, postAddMember, deleteMember } from "../../../services/apiService";
 import "./Members.scss";
 const Members = (props) => {
     const params = useParams();
@@ -10,16 +10,19 @@ const Members = (props) => {
     const navigate = useNavigate();
     useEffect(() => {
         getData();
-    }, [id]);
+    }, []);
     const getData = async () => {
         let res = await getAllMember(id);
         if (res && res.ec === 200) {
             setMembers(res.dt);
         }
-        console.log(members);
+        //console.log(members);
     };
-    const hanldeDeleteMember = () => {
-        alert("me");
+    const hanldeDeleteMember = async (memberId) => {
+        let res = await deleteMember(memberId);
+        if (res && res.ec === 200) {
+            toast.success(res.em);
+        }
     };
     return (
         <>
@@ -46,7 +49,7 @@ const Members = (props) => {
 
                                     <span className="name-text">{item?.member?.userName}</span>
                                 </div>
-                                <button className="btn btn-light" onClick={() => hanldeDeleteMember()}>
+                                <button className="btn btn-light" onClick={() => hanldeDeleteMember(item.id)}>
                                     Xóa
                                 </button>
                             </div>

@@ -96,6 +96,9 @@ const postCreateNewFolder = (data) => {
 const deleteFolder = (id) => {
     return axios.delete(`/api/folder/${id}`);
 };
+const putAddFolderInClass = (data) => {
+    return axios.put(`/api/folder`, { ...data });
+};
 //folder-detail
 const postFolderDetail = (data) => {
     return axios.post(`/api/folder-detail`, { ...data });
@@ -110,9 +113,7 @@ const getClassWithPage = (id, page, limit) => {
 const getDataClass = (id) => {
     return axios.get(`/api/folder/class/${id}`);
 };
-const getAllMember = (id) => {
-    return axios.get(`/api/member/class/${id}`);
-};
+
 const postCreateNewClass = (data) => {
     return axios.post(`/api/class`, { ...data });
 };
@@ -121,6 +122,22 @@ const deleteClass = (id) => {
 };
 const getFolderNonFromClass = (userId) => {
     return axios.get(`/api/folder/user/${userId}/non-class`);
+};
+const putUpdateClass = (data) => {
+    return axios.put(`/api/class`, { ...data });
+};
+//member
+const getAllMember = (id) => {
+    return axios.get(`/api/member/class/${id}`);
+};
+const postAddMember = (data) => {
+    return axios.post(`/api/member`, { ...data });
+};
+const getListUser = (data) => {
+    return axios.get(`/api/user/find?regex=${data}`);
+};
+const deleteMember = (id) => {
+    return axios.delete(`/api/member/${id}`);
 };
 export {
     postCreacteNewUser,
@@ -149,6 +166,7 @@ export {
     getFolderWithPage,
     postCreateNewFolder,
     deleteFolder,
+    putAddFolderInClass,
     postFolderDetail,
     getAllClass,
     getClassWithPage,
@@ -156,5 +174,9 @@ export {
     getAllMember,
     postCreateNewClass,
     deleteClass,
+    putUpdateClass,
     getFolderNonFromClass,
+    postAddMember,
+    deleteMember,
+    getListUser,
 };

@@ -33,7 +33,11 @@ const GetClass = (props) => {
                                     key={`${index}-class-home`}
                                     className="class-navigate card"
                                     onClick={() => {
-                                        navigate(`/classes/${item.id}`);
+                                        navigate(`/classes/${item.id}`, {
+                                            state: {
+                                                data: item.className,
+                                            },
+                                        });
                                     }}
                                 >
                                     <div className="class-home-card">

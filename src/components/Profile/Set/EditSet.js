@@ -26,6 +26,12 @@ const EditSet = (props) => {
 
     const userId = useSelector((state) => state.user.account.user_id);
     const handleSubmit = async (event) => {
+        let arrCardClone = _.cloneDeep(arrCard);
+        arrCardClone = arrCardClone.filter((item) => item.term === "" || item.definition === "");
+        if (arrCardClone.length > 0) {
+            toast.error("Vui lòng nhập đầy đủ thông tin thẻ!");
+            return;
+        }
         let data = {
             id: location?.state?.data[0]?.id,
             studySetName: title,
@@ -37,7 +43,9 @@ const EditSet = (props) => {
                 delete card.id;
             }
         });
+        console.log(data);
         let res = await putUpdateSet(data);
+        console.log(res);
         if (res && res.ec === 200) {
             toast.success(res.em);
             navigate(`/flash-cards/${location?.state?.data[0]?.id}`);

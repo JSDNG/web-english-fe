@@ -34,7 +34,7 @@ const FolderFromClass = (props) => {
                                 onClick={() => navigate(`/folders/${item.id}`)}
                             >
                                 <div className="folder-body-content-class">
-                                    <span> học phần</span>
+                                    <span> {item?.totalStudySets} học phần</span>
                                     <span>&#124;</span>
                                     <img
                                         className="img-by-user-create"

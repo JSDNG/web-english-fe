@@ -2,10 +2,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getFolderNonFromClass } from "../../../services/apiService";
+import { getFolderNonFromClass, putAddFolderInClass } from "../../../services/apiService";
 import { useDispatch, useSelector } from "react-redux";
 const ModalAddFolder = (props) => {
-    const { showAddFolder, setShowAddFolder } = props;
+    const { showAddFolder, setShowAddFolder, classId } = props;
     const handleClose = () => setShowAddFolder(false);
     const [infoFolder, setInfoFolder] = useState("");
     const [arrFolder, setArrFolder] = useState([]);
@@ -22,8 +22,9 @@ const ModalAddFolder = (props) => {
             setArrFolder(res.dt);
         }
     };
-    console.log(arrFolder);
-    const handleAddFolder = () => {
+
+    const handleAddFolder = async (id, folderName) => {
+        let res = await putAddFolderInClass({ id, folderName, classId });
         setShowAddFolder(false);
         //console.log(title, desc);
     };
@@ -57,7 +58,10 @@ const ModalAddFolder = (props) => {
                                         >
                                             <div className="folder-body-content d-flex align-items-center">
                                                 <span> {item?.folderName}</span>
-                                                <button className="btn btn-light" onClick={() => handleAddFolder()}>
+                                                <button
+                                                    className="btn btn-light"
+                                                    onClick={() => handleAddFolder(item?.id, item?.folderName)}
+                                                >
                                                     Thêm
                                                 </button>
                                             </div>

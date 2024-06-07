@@ -10,7 +10,7 @@ NProgress.configure({
     trickleSpeed: 100,
 });
 const axiosInstance = axios.create({
-    baseURL: "http://192.168.1.22:8000",
+    baseURL: "http://192.168.1.13:8000",
     // timeout: 1000,
     // headers: { "X-Custom-Header": "foobar" },
 });
@@ -50,42 +50,43 @@ axiosInstance.interceptors.response.use(
         switch (status) {
             // authentication (token related issues)
             case 401: {
-                toast.error("Not authenticated the user");
+                //toast.error("Not authenticated the user");
                 //checkCookie();
-                window.location.href = "/login";
+                //window.location.href = "/login";
                 //return Promise.reject(error);
                 return error.response.data;
             }
 
             // forbidden (permission related issues)
             case 403: {
-                toast.error(`you don't have the permission to access this resource...`);
-                return Promise.reject(error);
+                //toast.error(`you don't have the permission to access this resource...`);
+                return error.response.data;
             }
 
             // bad request
             case 400: {
-                return Promise.reject(error);
+                //toast.error("Not authenticated the user");
+                return error.response.data;
             }
 
             // not found
             case 404: {
-                return Promise.reject(error);
+                return error.response.data;
             }
 
             // conflict
             case 409: {
-                return Promise.reject(error);
+                return error.response.data;
             }
 
             // unprocessable
             case 422: {
-                return Promise.reject(error);
+                return error.response.data;
             }
 
             // generic api error (server related) unexpected
             default: {
-                return Promise.reject(error);
+                return error.response.data;
             }
         }
     }

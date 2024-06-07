@@ -76,10 +76,13 @@ const DetailSet = (props) => {
                         detailSet[0]?.cards.length > 0 &&
                         detailSet[0]?.cards.map((item, index) => {
                             return (
-                                <div key={`${index}-card`} className="card">
-                                    <div className="card-body d-flex gap-5">
+                                <div key={`${index}-card`} className="card custom-card">
+                                    <div className="card-body ">
                                         <span> {item.term}</span>
-                                        <span>&#124; {item.definition}</span>
+                                    </div>
+                                    <div className="card-body d-flex gap-5">
+                                        <span>&#124; </span>
+                                        <span>{item.definition}</span>
                                         {/* <button className="btn btn-light ml-auto"> Chỉnh sửa</button> */}
                                     </div>
                                 </div>

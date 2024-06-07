@@ -1,22 +1,40 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-
+import { putUpdateClass } from "../../../services/apiService";
 import Modal from "react-bootstrap/Modal";
-
+import { toast } from "react-toastify";
 const ModalUpdateClass = (props) => {
-    const { showMember, setShowMember } = props;
-    const handleClose = () => setShowMember(false);
+    const { className, setClassName, showUpdateClass, setShowUpdateClass, id } = props;
+    const handleClose = () => setShowUpdateClass(false);
 
-    const [infoMember, setInfoMember] = useState("");
+    const [classNameNew, setClassNameNew] = useState("");
 
-    const handleAddMember = () => {
-        setShowMember(false);
+    const handleUpdateClass = async () => {
+        if (!classNameNew) {
+            toast.error("Vui lòng nhập tên lớp mới!");
+            return;
+        }
+
+        let description = "";
+        let className = classNameNew;
+        let res = await putUpdateClass({ id, className, description });
+        console.log(res);
+        if (res && res.ec === 200) {
+            toast.success(res.em);
+            setShowUpdateClass(false);
+            setClassName(classNameNew);
+            setClassNameNew("");
+        }
+        if (res && res.ec !== 200) {
+            toast.error(res.em);
+        }
+
         //console.log(title, desc);
     };
     return (
         <>
             <Modal
-                show={showMember}
+                show={showUpdateClass}
                 onHide={handleClose}
                 animation={false}
                 size="lg"
@@ -24,28 +42,27 @@ const ModalUpdateClass = (props) => {
                 className="modal-add-user"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Mời thành viên</Modal.Title>
+                    <Modal.Title>Chỉnh sửa lớp</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="row g-3">
                         <div className="col-md-12">
-                            <label className="form-label">
-                                Để mời thành viên tham gia lớp học này, hãy nhập tên người dùng hoặc email Quizlet của
-                                họ bên dưới (phân tách bằng dấu phẩy hoặc ngắt dòng).
-                            </label>
+                            <label className="form-label">Tên lớp hiện tại</label>
+                            <input type="text" className="form-control" value={className} />
+                            <label className="form-label"></label>
+                            <label className="form-label">Nhập tên lớp mới</label>
                             <input
                                 type="text"
                                 className="form-control"
-                                value={infoMember}
-                                onChange={(event) => setInfoMember(event.target.value)}
-                                placeholder="Nhập tên người dùng hoặc email"
+                                value={classNameNew}
+                                onChange={(event) => setClassNameNew(event.target.value)}
                             />
                         </div>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => handleAddMember()}>
-                        Save
+                    <Button variant="primary" onClick={() => handleUpdateClass()}>
+                        Hoàn tất
                     </Button>
                 </Modal.Footer>
             </Modal>

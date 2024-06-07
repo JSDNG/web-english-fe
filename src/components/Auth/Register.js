@@ -34,16 +34,16 @@ const Register = () => {
             toast.error("invalid email");
             return;
         }
+        if (!username) {
+            toast.error("invalid username");
+            return;
+        }
 
         if (!password) {
             toast.error("invalid password");
             return;
         }
 
-        if (!username) {
-            toast.error("invalid username");
-            return;
-        }
         // if (!groupId) {
         //     toast.error("invalid groupId");
         //     return;
@@ -51,11 +51,11 @@ const Register = () => {
         //api
         let res = await postRegister({ email, password, username, groupId });
         console.log(res);
-        if (res && +res.ec === 200) {
+        if (res && res.ec === 200) {
             toast.success(res.em);
             navigate("/login");
         }
-        if (res && +res.ec !== 200) {
+        if (res && res.ec !== 200) {
             toast.error(res.em);
         }
     };

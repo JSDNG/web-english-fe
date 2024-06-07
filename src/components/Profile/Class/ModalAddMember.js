@@ -2,14 +2,17 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 
 import Modal from "react-bootstrap/Modal";
-
+import { getListUser, postAddMember } from "../../../services/apiService";
 const ModalAddMember = (props) => {
-    const { showMember, setShowMember } = props;
+    const { showMember, setShowMember, id } = props;
     const handleClose = () => setShowMember(false);
 
     const [infoMember, setInfoMember] = useState("");
 
-    const handleAddMember = () => {
+    const handleAddMember = async () => {
+        console.log(infoMember);
+        let res = await getListUser(infoMember);
+        console.log(res);
         setShowMember(false);
         //console.log(title, desc);
     };
@@ -30,22 +33,22 @@ const ModalAddMember = (props) => {
                     <form className="row g-3">
                         <div className="col-md-12">
                             <label className="form-label">
-                                Để mời thành viên tham gia lớp học này, hãy nhập tên người dùng hoặc email Quizlet của
-                                họ bên dưới (phân tách bằng dấu phẩy hoặc ngắt dòng).
+                                Để mời thành viên tham gia lớp học này, hãy nhập tên người dùng Quizlet của họ bên dưới
+                                (phân tách bằng dấu phẩy hoặc ngắt dòng).
                             </label>
                             <input
                                 type="text"
                                 className="form-control"
                                 value={infoMember}
                                 onChange={(event) => setInfoMember(event.target.value)}
-                                placeholder="Nhập tên người dùng hoặc email"
+                                placeholder="Nhập tên người dùng "
                             />
                         </div>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={() => handleAddMember()}>
-                        Save
+                        Hoàn tất
                     </Button>
                 </Modal.Footer>
             </Modal>

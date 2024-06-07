@@ -23,6 +23,8 @@ const ModalCreateClass = (props) => {
         let res = await postCreateNewClass({ className, description, userId });
         if (res && res.ec === 201) {
             toast.success("Created class successful!");
+            setClassName("");
+            setDescription("");
             setShowClass(false);
         }
         if (res && res.ec !== 201) {

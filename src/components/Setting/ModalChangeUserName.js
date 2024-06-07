@@ -36,7 +36,7 @@ const ModalChangeUserName = (props) => {
                 className="modal-add-user"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Đổi Tên người dùng</Modal.Title>
+                    <Modal.Title>Đổi tên người dùng</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="row g-3">
