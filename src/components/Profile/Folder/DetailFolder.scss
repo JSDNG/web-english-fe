@@ -38,7 +38,6 @@
         }
     }
     .list-set-folder {
-        cursor: pointer;
         display: flex;
         flex-direction: column;
         gap: 15px;
@@ -48,23 +47,31 @@
             flex-direction: row;
             align-items: center;
             padding: 15px 25px;
-            .set-header-text-folder {
-            }
-            .set-body-content-folder {
-                .custom-total-cards-set {
-                    font-size: 12px;
-                    font-weight: 500;
-                    border-radius: 10px;
-                    background-color: rgb(210, 207, 255);
+            cursor: pointer;
+            .set-from-folder-custom {
+                .set-header-text-folder {
                 }
-            }
-            .set-footer-content-folder {
-                padding-top: 40px;
-                .img-by-user-create {
-                    width: 25px;
-                    height: 25px;
-                    border-radius: 50%;
-                    object-fit: cover;
+                .set-body-content-folder {
+                    .custom-total-cards-set {
+                        font-size: 12px;
+                        font-weight: 500;
+                        border-radius: 10px;
+                        background-color: rgb(210, 207, 255);
+                    }
+                }
+                .set-footer-content-folder {
+                    padding-top: 40px;
+                    .img-by-user-create {
+                        width: 25px;
+                        height: 25px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+                .custom-btn-delete {
+                    button {
+                        margin-left: auto;
+                    }
                 }
             }
         }

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import ModalAddMember from "./ModalAddMember";
 import { useParams, useNavigate } from "react-router-dom";
-
-import { getDataClass } from "../../../services/apiService";
+import { toast } from "react-toastify";
+import { getDataClass, putAddFolderInClass } from "../../../services/apiService";
 import "./FolderFromClass.scss";
 const FolderFromClass = (props) => {
     const [show, folderShow] = useState(false);
@@ -20,7 +20,18 @@ const FolderFromClass = (props) => {
             //console.log(folders[0]?.Studyfolders);
         }
     };
-
+    const hanldeDeletefolder = async (id, folderName) => {
+        let classId = 0;
+        let res = await putAddFolderInClass({ id, folderName, classId });
+        console.log(res);
+        if (res && res.ec === 200) {
+            toast.success("Delete folder success!");
+            getData();
+        }
+        if (res && res.ec !== 200) {
+            toast.error(res.em);
+        }
+    };
     return (
         <>
             <div className="list-folder-class ">
@@ -28,32 +39,30 @@ const FolderFromClass = (props) => {
                     folders.length > 0 &&
                     folders.map((item, index) => {
                         return (
-                            <div
-                                key={`${index}-folder`}
-                                className="folder-content-class card col-md-9"
-                                onClick={() => navigate(`/folders/${item.id}`)}
-                            >
-                                <div className="folder-body-content-class">
-                                    <span> {item?.totalStudySets} học phần</span>
-                                    <span>&#124;</span>
-                                    <img
-                                        className="img-by-user-create"
-                                        src={`data:image/jpeg;base64,${item?.user?.image}`}
-                                    />
-                                    <span>&#124;</span>
-                                    <span className="name-text">{item?.user?.userName}</span>
+                            <div key={`${index}-folder`} className="folder-content-class card col-md-9">
+                                <div onClick={() => navigate(`/folders/${item.id}`)}>
+                                    <div className="folder-body-content-class">
+                                        <span> {item?.totalStudySets} học phần</span>
+                                        <span>&#124;</span>
+                                        <img
+                                            className="img-by-user-create"
+                                            src={`data:image/jpeg;base64,${item?.user?.image}`}
+                                        />
+                                        <span>&#124;</span>
+                                        <span className="name-text">{item?.user?.userName}</span>
+                                    </div>
+                                    <div className="folder-header-text-class">
+                                        <span className="class-body-text"> Thư mục: {item.folderName}</span>
+                                    </div>
                                 </div>
-                                <div className="folder-header-text-class">
-                                    <span className="class-body-text"> Thư mục: {item.folderName}</span>
+                                <div className="folder-footer-content-class">
+                                    <button
+                                        className="btn btn-light"
+                                        onClick={() => hanldeDeletefolder(item?.id, item?.folderName)}
+                                    >
+                                        Xóa
+                                    </button>
                                 </div>
-
-                                {/* <div className="folder-footer-content-class">
-                                    <img
-                                        className="img-by-user-create"
-                                        src={`data:image/jpeg;base64,${item?.user?.image}`}
-                                    />
-                                    <span className="name-text">{item?.user?.userName}</span>
-                                </div> */}
                             </div>
                         );
                     })}

@@ -25,8 +25,8 @@ const ModalAddFolder = (props) => {
 
     const handleAddFolder = async (id, folderName) => {
         let res = await putAddFolderInClass({ id, folderName, classId });
-        setShowAddFolder(false);
-        //console.log(title, desc);
+        handleClose();
+        await props.getData();
     };
     return (
         <>
@@ -58,12 +58,13 @@ const ModalAddFolder = (props) => {
                                         >
                                             <div className="folder-body-content d-flex align-items-center">
                                                 <span> {item?.folderName}</span>
-                                                <button
+                                                <Button
+                                                    variant="primary"
                                                     className="btn btn-light"
                                                     onClick={() => handleAddFolder(item?.id, item?.folderName)}
                                                 >
                                                     Thêm
-                                                </button>
+                                                </Button>
                                             </div>
                                         </div>
                                     );

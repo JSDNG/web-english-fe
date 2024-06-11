@@ -7,7 +7,7 @@ import HeaderClass from "./HeaderClass";
 import { deleteClass } from "../../../services/apiService";
 import { Outlet } from "react-router-dom";
 import "./ManageDetailClass.scss";
-import FolderFromClass from "./FolderFromClass";
+import { getDataClass, putAddFolderInClass } from "../../../services/apiService";
 import ModalUpdateClass from "./ModalUpdateClass";
 import { toast } from "react-toastify";
 const ManageDetailClass = (props) => {
@@ -16,11 +16,20 @@ const ManageDetailClass = (props) => {
     const [showUpdateClass, setShowUpdateClass] = useState(false);
     const location = useLocation();
     const [className, setClassName] = useState(location?.state?.data);
-
+    const [folders, setFolders] = useState([]);
     const params = useParams();
     const id = params.id;
     const navigate = useNavigate();
-
+    useEffect(() => {
+        getData();
+    }, [id]);
+    const getData = async () => {
+        let res = await getDataClass(id);
+        console.log(res);
+        if (res && res.ec === 200) {
+            setFolders(res.dt.folders);
+        }
+    };
     const hanldeDeleteClass = async () => {
         let res = await deleteClass(id);
         if (res && res.ec === 200) {
@@ -33,7 +42,7 @@ const ManageDetailClass = (props) => {
         <div className="detail-class-main">
             <div className="detail-class-header">
                 <div className="class-name">
-                    <span className="class-name-text">Tên lớp {className} </span>
+                    <span className="class-name-text"> {className} </span>
                 </div>
                 <div className="action-class">
                     <div>
@@ -44,6 +53,9 @@ const ManageDetailClass = (props) => {
                             showAddFolder={showAddFolder}
                             setShowAddFolder={setShowAddFolder}
                             classId={id}
+                            folders={folders}
+                            setFolders={setFolders}
+                            getData={getData}
                         />
                     </div>
                     <div>

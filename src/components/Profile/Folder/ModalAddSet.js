@@ -6,26 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 const ModalAddSet = (props) => {
-    const { show, setShow, folderId } = props;
+    const { show, setShow, folderId, arrSetNonFolder } = props;
     const handleClose = () => setShow(false);
     const navigate = useNavigate();
-    useEffect(() => {
-        getData();
-    }, []);
-    const [data, setData] = useState([]);
-    const userId = useSelector((state) => state.user.account.user_id);
 
-    const getData = async () => {
-        let res = await getSetNonFromFolder(userId, folderId);
-        if (res && res.ec === 200) {
-            setData(res.dt);
-        }
-    };
-    const handleAddSet = async (id) => {
-        let studySetId = id;
+    const handleAddSet = async (studySetId) => {
         let res = await postFolderDetail({ folderId, studySetId });
         if (res && res.ec === 201) {
-            setShow(false);
+            handleClose();
+            await props.getData1();
         }
     };
     return (
@@ -53,23 +42,24 @@ const ModalAddSet = (props) => {
                                 Tạo học phần mới
                             </button>
                         </div>
-                        {data &&
-                            data.length > 0 &&
-                            data.map((item, index) => {
+                        {arrSetNonFolder &&
+                            arrSetNonFolder.length > 0 &&
+                            arrSetNonFolder.map((item, index) => {
                                 return (
                                     <div
                                         key={`${index}-set`}
                                         className="set-content-folder card p-2 px-2 mb-3"
                                         //onClick={() => navigate(`/flash-cards/${item?.id}`)}
                                     >
-                                        <div className="set-body-content-folder d-flex align-items-center">
+                                        <div className="set-body-content-folder d-flex align-items-center gap-3">
                                             <span className="custom-total-cards-set">{item?.studySetName}</span>
-                                            <button
-                                                className="btn btn-light mr-2"
+                                            <Button
+                                                variant="primary"
+                                                className="btn btn-light ml-auto"
                                                 onClick={() => handleAddSet(item?.id)}
                                             >
                                                 Thêm
-                                            </button>
+                                            </Button>
                                         </div>
                                     </div>
                                 );

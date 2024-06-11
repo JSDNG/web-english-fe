@@ -85,7 +85,7 @@ const getDataFolder = (id) => {
     return axios.get(`/api/folder/${id}`);
 };
 const getStudySetByFolder = (id) => {
-    return axios.get(`/api/study-set/folder/${id}`);
+    return axios.get(`/api/folder-detail/folder/${id}`);
 };
 const getFolderWithPage = (page, limit) => {
     return axios.get(`/api/folder?page=${page}&limit=${limit}`);

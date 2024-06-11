@@ -14,7 +14,7 @@ const HomePage1 = (props) => {
                 <div>
                     <GetClass />
                 </div>
-                <div>
+                {/* <div>
                     <span className="title">Hãy thử các tính năng cập nhật mới</span>
                     <div className="row row-cols-1 row-cols-md-3 g-4">
                         <div className="col">
@@ -45,7 +45,7 @@ const HomePage1 = (props) => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );
