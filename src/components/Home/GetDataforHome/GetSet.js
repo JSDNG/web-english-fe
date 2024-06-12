@@ -28,9 +28,9 @@ const GetSet = (props) => {
                     data.length > 0 &&
                     data.map((item, index) => {
                         return (
-                            <div className="col">
+                            <div className="col" key={index}>
                                 <div
-                                    key={`${index}-set-home`}
+                                    
                                     className="set-navigate card"
                                     onClick={() => {
                                         navigate(`/flash-cards/${item.id}`);

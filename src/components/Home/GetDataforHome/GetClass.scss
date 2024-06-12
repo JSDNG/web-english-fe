@@ -17,15 +17,17 @@
                 padding: 10px 20px;
                 .class-home-a {
                     display: flex;
-                    gap: 220px;
+                    justify-content: space-between;
                     .class-home-a-title {
                         padding-top: 10px;
                         font-weight: 500;
                     }
-                    .image-class-custom {
-                        height: 70px;
-                        border-radius: 50%;
-                        object-fit: cover;
+                    .image-custom {
+                        .image-class-custom {
+                            height: 70px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
                     }
                 }
 

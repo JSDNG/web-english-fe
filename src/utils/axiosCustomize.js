@@ -10,7 +10,7 @@ NProgress.configure({
     trickleSpeed: 100,
 });
 const axiosInstance = axios.create({
-    baseURL: "http://192.168.1.13:8000",
+    baseURL: "http://10.252.2.224:8000",
     // timeout: 1000,
     // headers: { "X-Custom-Header": "foobar" },
 });

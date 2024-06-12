@@ -56,7 +56,7 @@ const ModalAddFolder = (props) => {
                                             className="folder-content card p-2 px-2 mb-3"
                                             //onClick={() => navigate(`/folders/${item.id}`)}
                                         >
-                                            <div className="folder-body-content d-flex align-items-center">
+                                            <div className="folder-body-content d-flex align-items-center justify-content-between">
                                                 <span> {item?.folderName}</span>
                                                 <Button
                                                     variant="primary"

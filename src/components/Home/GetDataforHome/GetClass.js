@@ -12,7 +12,7 @@ const GetClass = (props) => {
     const user_id = store?.getState()?.user?.account?.user_id;
     const getData = async () => {
         let res = await getClassWithPage(user_id, 1, 3);
-
+        console.log("get class", res);
         if (res && res.ec === 200) {
             classData(res.dt.classes);
         }
@@ -28,9 +28,8 @@ const GetClass = (props) => {
                     data.length > 0 &&
                     data.map((item, index) => {
                         return (
-                            <div className="col">
+                            <div className="col" key={index}>
                                 <div
-                                    key={`${index}-class-home`}
                                     className="class-navigate card"
                                     onClick={() => {
                                         navigate(`/classes/${item.id}`, {
@@ -45,7 +44,7 @@ const GetClass = (props) => {
                                             <div>
                                                 <span className="class-home-a-title">{item.className}</span>
                                             </div>
-                                            <div>
+                                            <div className="image-custom">
                                                 <img
                                                     className="image-class-custom"
                                                     src={`data:image/jpeg;base64,${item?.user?.image}`}

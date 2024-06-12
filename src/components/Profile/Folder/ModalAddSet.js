@@ -51,15 +51,19 @@ const ModalAddSet = (props) => {
                                         className="set-content-folder card p-2 px-2 mb-3"
                                         //onClick={() => navigate(`/flash-cards/${item?.id}`)}
                                     >
-                                        <div className="set-body-content-folder d-flex align-items-center gap-3">
-                                            <span className="custom-total-cards-set">{item?.studySetName}</span>
-                                            <Button
-                                                variant="primary"
-                                                className="btn btn-light ml-auto"
-                                                onClick={() => handleAddSet(item?.id)}
-                                            >
-                                                Thêm
-                                            </Button>
+                                        <div className="set-body-content-folder d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <span className="custom-total-cards-set">{item?.studySetName}</span>
+                                            </div>
+                                            <div>
+                                                <Button
+                                                    variant="primary"
+                                                    className="btn btn-light"
+                                                    onClick={() => handleAddSet(item?.id)}
+                                                >
+                                                    Thêm
+                                                </Button>
+                                            </div>
                                         </div>
                                     </div>
                                 );
