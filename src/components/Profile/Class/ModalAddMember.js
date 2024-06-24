@@ -8,13 +8,16 @@ const ModalAddMember = (props) => {
     const handleClose = () => setShowMember(false);
 
     const [infoMember, setInfoMember] = useState("");
-
+    const [data, setData] = useState([]);
     const handleAddMember = async () => {
         console.log(infoMember);
         let res = await getListUser(infoMember);
+        // if(res&& res.ec === 200){
+        // setData(res.)
+        // }
+
         console.log(res);
-        setShowMember(false);
-        //console.log(title, desc);
+        //setShowMember(false);
     };
     return (
         <>
